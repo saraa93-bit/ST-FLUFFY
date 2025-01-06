@@ -28,7 +28,7 @@ ST-FLUFFY is a modern and interactive e-commerce website developed as part of my
 ## Learning Outcomes:
 - Implementing dynamic DOM manipulation using JavaScript.
 - Managing user interactions and form validations.
-- Enhancing UI with CSS and Bootstrap.
+- Enhancing UI with CSS.
 - Understanding e-commerce workflows and shopping cart management.
 
 ## Future Improvements:

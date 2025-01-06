@@ -1,4 +1,3 @@
-# ST-FLUFFY
 # ST-FLUFFY E-commerce Project
 
 **Project Name:** ST-FLUFFY

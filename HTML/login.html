@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../CSS/login.css">
+    <script defer src="../JS/login.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-main">
+             <div>
+                <h1 class="login-logo"> ST<span class="login-icon">🍰</span>FLUFFY</h1>
+             </div>
+             <div class="login-container">
+            
+               <h2 class="login-header">Login</h2>
+
+               <form id="loginForm">
+                  <div class="input-group-login">
+                    <input type="email" name="email" placeholder="Email" class="input-field-login" required>
+                    <p class="error-message" id="emailError"></p>
+                  </div>
+
+                  <div class="input-group-login password-container">
+                    <input type="password" name="password" placeholder="Password" class="input-field-login" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                    <p class="error-message" id="passwordError"></p>
+                  </div>
+
+                  <button type="submit" class="login-button">Login</button>
+                  <p class="error-message" id="Error"></p>
+                  <p class="success-message" id="successMessage"></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

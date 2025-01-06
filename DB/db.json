@@ -1,0 +1,46 @@
+[
+    {
+
+        "id":1,
+        "name":"cupcake",
+        "price": 130,
+        "description": "Delicious chocolate cake",
+        "image": "images/pexels-photo-1639567.jpeg"
+    },
+    {
+        "id":2,
+        "name":"cupcake",
+        "price": 150,
+        "description": "cupcake for joy",
+        "image": "images/pexels-photo-1854652.jpeg"
+
+    },
+    {
+        "id":3,
+        "name":"donats",
+        "price": 200,
+        "description": "Delicious chocolate cake"
+
+    },
+    {
+        "id":4,
+        "name":"cake",
+        "price": 300,
+        "description": "Delicious chocolate cake"
+
+    },
+    {
+        "id":5,
+        "name":"cupcake",
+        "price": 250,
+        "description": "Delicious chocolate cake"
+
+    },
+    {
+        "id":6,
+        "name":"cupcake",
+        "price": 350,
+        "description": "cupcake for joy"
+
+    }
+]

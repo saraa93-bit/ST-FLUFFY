@@ -3,7 +3,351 @@
     padding:0;
     margin:0;
 }
-body{
-    background-color: beige;
-    min-width:500%;
+.playwrite-ie-guides-regular {
+    font-family: "Playwrite IE Guides", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    line-height: 1.6;
+    color: #333;
+    background: #FAF7F2;
 }
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #FFF;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+.order-now {
+    padding: 10px 20px;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* About Section */
+.about-section {
+    text-align: center;
+    padding: 100px 20px;
+    background: #FFF5E1;
+}
+
+.about-section h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.main-img img {
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.img-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.img-row img {
+    width: 45%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.cta-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.cta-btn.secondary {
+    background: #eee;
+    color: #333;
+}
+.cookies{
+    justify-content: center;
+    margin-top: 20px;
+    border-radius: 15px;
+    color: white;
+    border: 1px solid rgb(238, 233, 234);
+    text-align: center;
+}
+.cookies img  {
+    margin: 10px;
+    padding: 10px;
+}
+.paracookies{
+    font-weight: bold ;
+    color:black;
+    text-align: center;
+    margin: 15px;
+    font-size: 2.2rem;
+
+}
+.parcookies{
+   
+    font-size: 1.6rem;
+    color:black;
+    text-align: center;
+    margin: 10px;
+}
+
+.cookies-btn, .about-us .btn{
+    justify-content: center;
+    margin-top: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid white;
+    background-color: rgba(35, 35, 35, 0.9);
+    margin: 10px;
+}
+.cookies-btn:hover, .about-us .btn:hover{
+    background-color: #525252;
+    
+}
+.slideshow-container {
+    display: flex; /* لجعل الصور تظهر بجانب بعضها */
+    overflow: hidden; /* إخفاء الصور التي تكون خارج العرض */
+    width: 100%; /* عرض الحاوية بالكامل */
+    position: relative; /* ضبط المواقع النسبية */
+    border-radius: 15px;
+
+}
+
+.slide {
+    width: 100vw; /* عرض الصورة بعرض الشاشة */
+    height: auto;
+    object-fit: cover; /* ملء الصورة بالشكل الأمثل */
+    transition: transform 1s ease; /* إضافة تأثير الانتقال */
+}
+.fluffy, .icon , .footer-logo{
+    font-family: 'Dancing Script', sans-serif;
+    margin-bottom: 10px;
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: #f3edc2; /* Icon color */
+    font-size: 2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #2f5fef;
+    transform: scale(1.2); /* Slight zoom effect */
+}
+
+.slide:first-child {
+    opacity: 1;
+}
+body, html {
+    height: 100%;
+}
+.cart-icon {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.cart-icon i {
+    color: #333;
+}
+
+.cart-icon:hover i {
+    color: #f45454; /* Change the icon color on hover */
+}
+.word{
+    font-family: 'DM Serif Text', sans-serif;
+}
+.about-us {
+    background-image: url('images/background.jpg'); /* Add your image path here */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 50px 20px; /* Adjust padding as needed */
+    text-align: center;
+    color: white; /* Text color on top of the image */
+    position: relative;
+}
+
+.about-us .content {
+    width: 100%; /* Optional: limit the width of the content */
+    margin: 10 auto;
+    padding: 20px;
+    background-image: url('images/pexels-photo-461431.jpeg');
+    border-radius: 15px; /* Optional: rounded corners */
+    background-repeat: no-repeat;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.about-us p {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    text-align: center;
+    color: white;
+    
+}
+
+/* .about-us .btn {
+    color: rgb(250, 247, 247);
+    padding: 20px;
+    margin: 30px auto;
+    background-color: rgba(35, 35, 35, 0.5);
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 1.1em;
+    transition:  0.3s ease;
+} */
+
+ 
+/* Footer Styling */
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color:#fdfdfd;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-links a, .social-icons a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin:15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #f7efda;
+    transform: scale(1.4);
+}
+.social-icons a:hover {
+    transform: scale(1.4);
+}
+.footer-credit {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.footer p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+
+.slide-track {
+    display: flex;
+    width: calc(100% * 8); /* Adjust for image count */
+    height:100%;
+    animation: scrollLeft 50s linear infinite;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+    
+@keyframes scrollLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.slideshow-container {
+    display: flex;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 100%; /* Adjusted width to be more normal */
+    height: 400px;
+    position: relative;
+    margin: 10px auto;
+}
+
+.slide {
+    box-sizing: border-box;
+    border: 1px solid #f7f8f7;
+    height:100%;
+    width:fit-content;
+    width: 45%;
+    height: 300px;
+    object-fit: cover;
+}
+.services{
+    font-family: Arial, Helvetica, sans-serif sans-serif;
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(67, 2, 2);
+    
+    font-size: 3.2rem;
+}
+
+

@@ -1,0 +1,22 @@
+<!-- review.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Review</title>
+</head>
+<body>
+    <h1>Leave a Review for your order and rate our products</h1>
+    <textarea id="reviewText" placeholder="Write your review here..."></textarea>
+    <div id="stars">
+        <span onclick="rateProduct(1)">&#9733;</span>
+        <span onclick="rateProduct(2)">&#9733;</span>
+        <span onclick="rateProduct(3)">&#9733;</span>
+        <span onclick="rateProduct(4)">&#9733;</span>
+        <span onclick="rateProduct(5)">&#9733;</span>
+    </div>
+    <button onclick="submitReview()">Submit Review</button>
+    <script src="../JS/review.js"></script>
+</body>
+</html>

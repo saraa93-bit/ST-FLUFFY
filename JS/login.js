@@ -1,56 +1,56 @@
-// Toggle password visibility
 function togglePasswordVisibility() {
-  const passwordField = document.querySelector('input[name="password"]');
-  const toggleIcon = document.querySelector('.toggle-password i');
-  
-  if (passwordField.type === 'password') {
-    passwordField.type = 'text';
-    toggleIcon.classList.remove('fa-eye');
-    toggleIcon.classList.add('fa-eye-slash');
-  } else {
-    passwordField.type = 'password';
-    toggleIcon.classList.remove('fa-eye-slash');
-    toggleIcon.classList.add('fa-eye');
-  }
+    const passwordInput = document.querySelector('input[name="password"]');
+    const icon = document.querySelector('.toggle-password i');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
 }
 
-// Form validation function
-function validateForm(event) {
-  event.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-  // Clear previous error messages
-  document.getElementById('emailError').innerText = '';
-  document.getElementById('passwordError').innerText = '';
+    const email = document.querySelector('input[name="email"]').value;
+    const password = document.querySelector('input[name="password"]').value;
+    const errorElement = document.getElementById('Error');
+    const successMessage = document.getElementById('successMessage');
 
-  // Get the form elements
-  const email = document.querySelector('input[name="email"]');
-  const password = document.querySelector('input[name="password"]');
-  let valid = true;
+    try {
+        const response = await fetch('../DB/db.json');
+        const data = await response.json();
 
-  // Validate email field
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!email.value) {
-    document.getElementById('emailError').innerText = 'Email is required.';
-    valid = false;
-  } else if (!emailPattern.test(email.value)) {
-    document.getElementById('emailError').innerText = 'Please enter a valid email address.';
-    valid = false;
-  }
+        const user = data.users.find(user => user.email === email && user.password === password);
 
-  // Validate password field
-  if (!password.value) {
-    document.getElementById('passwordError').innerText = 'Password is required.';
-    valid = false;
-  }
+        if (user) {
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-  // If the form is valid, submit it
-  if (valid) {
-    document.getElementById('successMessage').innerText = 'Login successful!';
-    // You can proceed with form submission or other actions here.
-  } else {
-    document.getElementById('Error').innerText = 'Please fill in all fields correctly.';
-  }
-}
+            if (user.role === 'admin') {
+                successMessage.textContent = 'successfully login as an admin';
+                setTimeout(() => window.location.href = '../HTML/admin.html', 1500);
+            } 
+            else if (user.role === 'customer') {
+                successMessage.textContent = 'successfully login as a user';
+                setTimeout(() => window.location.href = '/index.html', 1500);
+            } 
+            else if (user.role === 'seller') {
+                successMessage.textContent = 'successfully login as a seller';
+                setTimeout(() => window.location.href = '../HTML/seller.html', 1500);
+            } 
+            else {
+                errorElement.textContent = 'email or password is incorrect';
+            }
+        } else {
+            errorElement.textContent = 'email or password is incorrect';
+        }
 
-// Attach the validation function to the form submission
-document.getElementById('loginForm').addEventListener('submit', validateForm);
+    } catch (error) {
+        console.error('error while loading', error);
+        errorElement.textContent = 'error while login in';
+    }
+});

@@ -1,46 +1,177 @@
-[
+{
+  "users": [
     {
-
-        "id":1,
-        "name":"cupcake",
-        "price": 130,
-        "description": "Delicious chocolate cake",
-        "image": "images/pexels-photo-1639567.jpeg"
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "role": "admin",
+      "password": "12345"
     },
     {
-        "id":2,
-        "name":"cupcake",
-        "price": 150,
-        "description": "cupcake for joy",
-        "image": "images/pexels-photo-1854652.jpeg"
-
+      "id": "2",
+      "name": "saraa",
+      "email": "saraa@gmail.com",
+      "role": "customer",
+      "password": "12345"
     },
     {
-        "id":3,
-        "name":"donats",
-        "price": 200,
-        "description": "Delicious chocolate cake"
-
+      "id": "3",
+      "name": "ali",
+      "email": "ali@gmail.com",
+      "role": "seller",
+      "password": "12345"
     },
     {
-        "id":4,
-        "name":"cake",
-        "price": 300,
-        "description": "Delicious chocolate cake"
-
+      "id": "5acb",
+      "name": "sar",
+      "email": "s@gmail.com",
+      "password": "12345",
+      "role": "seller"
     },
     {
-        "id":5,
-        "name":"cupcake",
-        "price": 250,
-        "description": "Delicious chocolate cake"
-
+      "id": "09af",
+      "username": "Saraa93_talat",
+      "email": "dr.saraatalat@gmail.com",
+      "password": "12345"
     },
     {
-        "id":6,
-        "name":"cupcake",
-        "price": 350,
-        "description": "cupcake for joy"
-
+      "id": "b922",
+      "username": "sally",
+      "email": "sally@gmail.com",
+      "password": "12345",
+      "role": "customer"
+    },
+    {
+      "id": "8f78",
+      "username": "Saraa",
+      "email": "saraa@gmail.com",
+      "password": "12345",
+      "role": "customer"
+    },
+    {
+      "id": "a6ca",
+      "username": "arwa",
+      "email": "arwa@gmail.com",
+      "password": "12345",
+      "role": "customer"
+    },
+    {
+      "id": "1272",
+      "name": "darr",
+      "email": "dse",
+      "password": "23455",
+      "role": "cusrt"
+    },
+    {
+      "id": "eb75",
+      "name": "sara",
+      "email": "sara@gmail.com",
+      "password": "1111111",
+      "role": "seller"
+    },
+    {
+      "id": "dccf",
+      "name": "بل",
+      "email": "اال",
+      "password": "اااا",
+      "role": "اتاتات"
     }
-]
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "cheese Cake",
+      "price": 15,
+      "description": "Deliciously moist cheese cake.",
+      "image": "../images/capture_250104_181347.png"
+    },
+    {
+      "id": "2",
+      "name": "cookies",
+      "price": 20,
+      "description": "Deliciously cookies",
+      "image": "../images/674b0ddf2054605eb732d9c8_Hero Image 1-p-500.webp"
+    },
+    {
+      "id": "4",
+      "name": "Vanilla Cupcake",
+      "price": 15,
+      "description": "Light and fluffy vanilla cupcake topped with smooth vanilla buttercream",
+      "image": "../images/pexels-photo-635409.webp"
+    },
+    {
+      "id": "5",
+      "name": "Baguette",
+      "price": 4.5,
+      "description": "Light and crispy baguette",
+      "image": "../images/674b19768dfb734293757847_Product Image 1-p-800.webp"
+    },
+    {
+      "id": "6",
+      "name": "tart",
+      "price": 39,
+      "description": "stawppery tart",
+      "image": "../images/pexels-photo-461431.jpeg"
+    },
+    {
+      "id": "44",
+      "name": "TART",
+      "description": "HELLO",
+      "image": "images/674b18c6ee29d2d16f5341b9_Blog Image 5-p-800.webp"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "name": "cheese Cake",
+      "price": "15",
+      "quantity": 1
+    }
+  ],
+  "orders": [],
+  "reviews": [
+    {
+      "id": "1",
+      "productId": 1,
+      "customerId": 2,
+      "rating": 5,
+      "comment": "Absolutely delicious cake",
+      "reviewDate": "2024-10-14"
+    }
+  ],
+  "roles": {
+    "admin": {
+      "permissions": [
+        "add_user",
+        "edit_user",
+        "remove_user",
+        "approve_product",
+        "edit_product",
+        "delete_product",
+        "manage_orders"
+      ]
+    },
+    "customer": {
+      "permissions": [
+        "browse_products",
+        "purchase",
+        "add_review",
+        "view_order_history"
+      ]
+    },
+    "seller": {
+      "permissions": [
+        "add_product",
+        "edit_product",
+        "view_orders",
+        "update_order_status"
+      ]
+    },
+    "anonymous": {
+      "permissions": [
+        "browse_products",
+        "search_products"
+      ]
+    }
+  }
+}

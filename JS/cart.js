@@ -1,88 +1,50 @@
-// cart.js
+function loadCart() {
+  fetch('http://localhost:5000/cart')
+      .then(response => response.json())
+      .then(data => {
+          const cartItemsDiv = document.getElementById('cart-items');
+          const totalPriceDiv = document.getElementById('total-price');
+          cartItemsDiv.innerHTML = '';
+          let totalPrice = 0;
 
-let products = [];
-
-// Fetch the products from the JSON file
-async function loadProducts() {
-  try {
-    const response = await fetch('products.json'); // Load the products.json file
-    products = await response.json(); // Parse the JSON data
-    renderProductList(); // Render the product list after the data is fetched
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
+          if (data.length === 0) {
+              cartItemsDiv.innerHTML = '<p>Cart is empty</p>';
+              totalPriceDiv.innerHTML = 'Total: 0 L.E';
+          } else {
+              data.forEach(item => {
+                  const itemElement = document.createElement('div');
+                  itemElement.innerHTML = `
+                      <h4>${item.name}</h4>
+                      <p>Price: ${item.price} L.E</p>
+                      <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.id}', this.value)">
+                      <button onclick="removeFromCart('${item.id}')">Remove</button>
+                  `;
+                  cartItemsDiv.appendChild(itemElement);
+                  totalPrice += item.price * item.quantity;
+              });
+              totalPriceDiv.innerHTML = `Total: ${totalPrice} L.E`;
+          }
+      })
+      .catch(error => console.error('Error loading cart:', error));
 }
 
-// Function to render product cards
-function renderProductCard(product) {
-  const productCardHTML = `
-    <div class="product-card">
-      <img src="${product.image}" alt="${product.name}" />
-      <h3>${product.name}</h3>
-      <p>${product.description}</p>
-      <span>$${product.price}</span>
-      <button onclick="addToCart(${product.id})">Add to Cart</button>
-    </div>
-  `;
-  return productCardHTML;
+function updateQuantity(productId, quantity) {
+  fetch(`http://localhost:5000/cart/${productId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ quantity: parseInt(quantity) })
+  }).then(loadCart);
 }
 
-// Function to render the product list on the page
-function renderProductList() {
-  const productListHTML = products.map(product => renderProductCard(product)).join('');
-  document.getElementById('product-list').innerHTML = productListHTML;
-}
-
-// Function to add a product to the cart
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  if (product) {
-    cart.push(product); // Add the product to the cart
-    renderCart(); // Re-render the cart
-  }
-}
-
-// Function to remove a product from the cart
 function removeFromCart(productId) {
-  cart = cart.filter(p => p.id !== productId); // Remove the product from the cart
-  renderCart(); // Re-render the cart
+  fetch(`http://localhost:5000/cart/${productId}`, { method: 'DELETE' })
+      .then(loadCart)
+      .catch(error => console.error('Error removing product:', error));
 }
 
-// Function to render the cart content
-function renderCart() {
-  const cartItemsHTML = cart.map(item => `
-    <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}" />
-      <span>${item.name}</span>
-      <span>$${item.price}</span>
-      <button onclick="removeFromCart(${item.id})">Remove</button>
-    </div>
-  `).join('');
-  document.getElementById('cart-items').innerHTML = cartItemsHTML;
-
-  // If the cart is empty, show a message
-  if (cart.length === 0) {
-    document.getElementById('cart-items').innerHTML = '<p>Your cart is empty.</p>';
-  }
-}
-
-// Function to toggle the cart visibility
-function toggleCart() {
-  const cartElement = document.getElementById('cart');
-  cartElement.style.display = cartElement.style.display === 'none' ? 'block' : 'none';
-}
-
-// Function to clear the cart
-function clearCart() {
-  cart = [];
-  renderCart(); // Re-render the cart
-}
-
-// Adding event listeners for cart toggle and clearing the cart
-document.getElementById('show-cart').addEventListener('click', toggleCart);
-document.getElementById('clear-cart').addEventListener('click', clearCart);
-
-// Initialize the product list when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  loadProducts(); // Load the products from the JSON file
+window.onload = loadCart;
+// وظيفة التحويل إلى صفحة العنوان ورقم الهاتف عند الضغط على زر "Checkout"
+document.querySelector('.checkout-btn').addEventListener('click', function() {
+  window.location.href = 'checkout.html'; // تأكد من أن لديك صفحة checkout.html
 });
+

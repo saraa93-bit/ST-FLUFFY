@@ -1,0 +1,24 @@
+/* orderHistory.css */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+li h3 {
+    margin: 0;
+}
+
+li p {
+    margin: 5px 0;
+}

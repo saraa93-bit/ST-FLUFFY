@@ -1,0 +1,96 @@
+/* تصميم صفحة الـ Checkout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* تصميم الهيدر */
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 2rem;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+header .logo .icon {
+    color: #f8b400;
+}
+
+/* تصميم قسم الـ Checkout */
+#checkout-section {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* العنوان */
+#checkout-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* تصميم النموذج */
+#checkout-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* تصميم الحقول */
+#checkout-form label {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+#checkout-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#checkout-form input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* زر الإرسال */
+.submit-btn {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+/* إضافة هامش لأسفل الصفحة */
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    margin-top: 30px;
+}

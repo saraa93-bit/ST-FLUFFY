@@ -30,14 +30,13 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         if (user) {
             localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-            // إظهار رسالة النجاح بناءً على الدور
             successMessage.textContent = `Successfully logged in as ${user.role}`;
             setTimeout(() => {
                 if (user.role === 'admin') {
                     window.location.href = '../HTML/admin.html';
                 } else if (user.role === 'customer') {
                     window.location.href = '/index.html';
-                    showProfileIcon(user);  // إظهار أيقونة الملف الشخصي للمستخدمين من نوع customer فقط
+                    showProfileIcon(user);
                 } else if (user.role === 'seller') {
                     window.location.href = '../HTML/seller.html';
                 }
@@ -52,9 +51,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
 });
 
-// دالة لعرض أيقونة الملف الشخصي للمستخدمين من نوع "customer"
 function showProfileIcon(user) {
-    if (user.role === 'customer') {  // التأكد أن الدور هو "customer"
+    if (user.role === 'customer') {
         const profileIconContainer = document.createElement('div');
         profileIconContainer.classList.add('profile-icon-container');
         
@@ -64,10 +62,9 @@ function showProfileIcon(user) {
             </a>
         `;
         
-        // إضافة الأيقونة إلى الهيدر
-        const header = document.querySelector('header');  // تأكد أن الهيدر موجود في الصفحة
+        const header = document.querySelector('header');
         if (header) {
-            header.appendChild(profileIconContainer);  // إضافة الأيقونة داخل الهيدر
+            header.appendChild(profileIconContainer);
         } else {
             console.error('Header element not found');
         }

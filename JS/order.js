@@ -31,19 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function confirmOrder(orderId) {
     alert(`order placed${orderId}`);
-    // Add further code here to handle confirming the order
 }
 
-// Function to delete order
 function deleteOrder(orderId) {
-    // Here, you can send a DELETE request to the server to delete the order
     fetch(`http://localhost:5000/orders/${orderId}`, {
         method: 'DELETE'
     })
     .then(response => response.json())
     .then(() => {
         alert(`order ${orderId} is removed`);
-        // Remove the row from the table after deletion
         const row = document.querySelector(`tr[data-order-id="${orderId}"]`);
         row.remove();
     })

@@ -3,8 +3,11 @@ body {
     margin: 0;
     padding: 0;
 }
-
-/* ستايل الهيدر */
+.admin-h1{
+    color:#d84242;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 10px;
+}
 .admin-header {
     background: #333;
     color: white;
@@ -14,31 +17,29 @@ body {
     position: relative;
 }
 
-/* روابط داخل الهيدر */
 .admin-header nav a {
     color: white;
     margin: 0 10px;
     text-decoration: none;
 }
 
-/* ستايل السايدبار */
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* عرض السايدبار */
-    height: 100%; /* تغطي كامل الصفحة */
+    width: 250px; 
+    height: 100%;
     background-color: #333;
     color: white;
     padding-top: 20px;
-    overflow-y: auto; /* يتيح التمرير عند الحاجة */
-    z-index: 1000; /* تأكد من أن السايدبار يظهر فوق المحتويات الأخرى */
+    overflow-y: auto;
+    z-index: 1000;
 }
 
-/* ستايل العناصر داخل السايدبار */
 .sidebar a {
     color: white;
     padding: 10px 15px;
+    margin: 20px;
     text-decoration: none;
     display: block;
     font-size: 16px;
@@ -49,14 +50,12 @@ body {
     background-color: #575757;
 }
 
-/* ستايل محتويات اللوحة الرئيسية */
 .admin-panel {
-    margin-left: 250px; /* لضمان وجود مساحة للسايدبار */
+    margin-left: 250px;
     padding: 20px;
     text-align: center;
 }
 
-/* فاصل */
 hr {
     color: #ea0c0c;
 }

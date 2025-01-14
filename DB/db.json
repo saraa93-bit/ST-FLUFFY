@@ -3,44 +3,51 @@
     {
       "id": "1",
       "name": "Admin",
-      "email": "admin@gmail.com",
-      "role": "admin",
+      "email": "admin",
+      "role": "admin@gmail.com",
       "password": "1234567@"
     },
     {
       "id": "2",
       "name": "saraa",
-      "email": "custumer@gmail.com",
-      "role": "customer",
+      "email": "customer",
+      "role": "custumer@gmail.com",
       "password": "1234567@"
     },
     {
       "id": "3",
       "name": "ali",
-      "email": "seller@gmail.com",
-      "role": "seller",
+      "email": "seller",
+      "role": "seller@gmail.com",
       "password": "1234567@"
     },
     {
       "id": "4",
-      "username": "Saraatalat",
-      "email": "dr.saraatalat@gmail.com",
-      "password": "1234567@",
-      "role": "customer"
+      "name": "saraa talat",
+      "email": "customer",
+      "role": "dr.saraatalat@gmail.com",
+      "password": "1234567@"
     },
     {
       "id": "5",
-      "username": "saraatalat",
-      "email": "dr.saraatalat@gmail.com",
-      "password": "1111111@",
-      "role": "admin"
+      "name": "ahmed ali",
+      "email": "admin",
+      "role": "dr.saraatalat@gmail.com",
+      "password": "1111111@"
     },
     {
       "id": "6",
-      "username": "sssssssssssss",
-      "email": "saraa@gmail.com",
-      "password": "1111111@",
-      "role": "customer"
+      "name": "sally ahmed",
+      "email": "customer",
+      "role": "saraa@gmail.com",
+      "password": "1111111@"
+    },
+    {
+      "id": "b215",
+      "name": "sara ali",
+      "email": "seller",
+      "role": "dr.saraatalat@gmail.com",
+      "password": "11111111@"
     }
   ],
   "products": [
@@ -89,9 +96,9 @@
   ],
   "cart": [
     {
-      "id": "1",
-      "name": "cheese Cake",
-      "price": "15",
+      "id": "2",
+      "name": "cookies",
+      "price": "20",
       "quantity": 1
     }
   ],

@@ -78,7 +78,7 @@ searchBar.addEventListener('input', () => {
           const resultItem = document.createElement('div');
           resultItem.classList.add('result-item');
           resultItem.textContent = product.name;
-          resultItem.onclick = () => scrollToProductById(product.id); // Use the id from JSON to scroll
+          resultItem.onclick = () => scrollToProductById(product.id);
           resultsDiv.appendChild(resultItem);
       });
   } else {
@@ -94,17 +94,16 @@ searchBar.addEventListener('keypress', (event) => {
           const productName = firstResult.textContent;
           const selectedProduct = products.find(product => product.name === productName);
           if (selectedProduct) {
-              scrollToProductById(selectedProduct.id); // Scroll to the product when Enter is pressed
+              scrollToProductById(selectedProduct.id);
           }
       }
   }
 });
 
-// Function to scroll to the product in the page based on its id
 function scrollToProductById(productId) {
-  const productElement = document.querySelector(`[data-id='${productId}']`); // Use the data-id attribute for matching
+  const productElement = document.querySelector(`[data-id='${productId}']`);
 
   if (productElement) {
-      productElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Smooth scroll to the product
+      productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }

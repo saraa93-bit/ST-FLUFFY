@@ -1,4 +1,3 @@
-// manage-products.js
 document.addEventListener("DOMContentLoaded", async () => {
     const productTableBody = document.getElementById("productTableBody");
 

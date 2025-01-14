@@ -1,14 +1,11 @@
 window.addEventListener('DOMContentLoaded', () => {
-    // قراءة بيانات المستخدم من localStorage
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-    // إذا كان الدور هو "customer" نعرض أيقونة الملف الشخصي
     if (loggedInUser && loggedInUser.role === 'customer') {
-        showProfileIcon();  // إظهار الأيقونة فقط إذا كان الدور "customer"
+        showProfileIcon();
     }
 });
 
-// دالة لإظهار الأيقونة في الهيدر
 function showProfileIcon() {
     const profileIconContainer = document.createElement('div');
     profileIconContainer.classList.add('profile-icon-container');
@@ -19,11 +16,10 @@ function showProfileIcon() {
         </a>
     `;
     
-    // إضافة الأيقونة إلى الهيدر
-    const header = document.querySelector('.header');  // التأكد من أن الهيدر موجود في الصفحة
+    const header = document.querySelector('.header');
     const profileContainer = document.getElementById('profileIconContainer');
     if (header && profileContainer) {
-        profileContainer.appendChild(profileIconContainer);  // إضافة الأيقونة داخل div المخصص
+        profileContainer.appendChild(profileIconContainer);
     } else {
         console.error('Header or profile icon container not found');
     }

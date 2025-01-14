@@ -1,4 +1,3 @@
-/* تصميم صفحة الـ Checkout */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -6,7 +5,6 @@ body {
     padding: 0;
 }
 
-/* تصميم الهيدر */
 header {
     background-color: #333;
     color: white;
@@ -25,7 +23,6 @@ header .logo .icon {
     color: #f8b400;
 }
 
-/* تصميم قسم الـ Checkout */
 #checkout-section {
     max-width: 600px;
     margin: 30px auto;
@@ -35,7 +32,6 @@ header .logo .icon {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* العنوان */
 #checkout-section h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
@@ -43,13 +39,11 @@ header .logo .icon {
     color: #333;
 }
 
-/* تصميم النموذج */
 #checkout-form {
     display: flex;
     flex-direction: column;
 }
 
-/* تصميم الحقول */
 #checkout-form label {
     margin-bottom: 8px;
     font-size: 1rem;
@@ -69,7 +63,6 @@ header .logo .icon {
     outline: none;
 }
 
-/* زر الإرسال */
 .submit-btn {
     padding: 12px;
     background-color: #4CAF50;
@@ -86,7 +79,6 @@ header .logo .icon {
     background-color: #45a049;
 }
 
-/* إضافة هامش لأسفل الصفحة */
 footer {
     padding: 20px;
     text-align: center;

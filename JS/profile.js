@@ -1,10 +1,8 @@
-// استدعاء البيانات من ملف JSON
 const loadUserData = () => {
     fetch('../data/profile.json')
         .then(response => response.json())
         .then(data => {
-            const user = data.users[0]; // نحن نعمل على أول مستخدم
-            // تعيين القيم في الحقول
+            const user = data.users[0];
             document.querySelector('.input-field[name="username"]').value = user.username;
             document.querySelector('.input-field[name="email"]').value = user.email;
             document.querySelector('.input-field[name="password"]').value = user.password;
@@ -13,28 +11,24 @@ const loadUserData = () => {
         .catch(error => console.error('Error loading user data:', error));
 };
 
-// حفظ التغييرات
 const saveChanges = () => {
     const username = document.querySelector('.input-field[name="username"]').value;
     const email = document.querySelector('.input-field[name="email"]').value;
     const password = document.querySelector('.input-field[name="password"]').value;
     const confirmPassword = document.querySelector('.input-field[name="confirm-password"]').value;
 
-    // التأكد من تطابق كلمة السر
     if (password !== confirmPassword) {
         alert("Passwords do not match!");
         return;
     }
 
-    // البيانات الجديدة
     const updatedData = {
-        id: 1, // id الخاص بالمستخدم
+        id: 1,
         username,
         email,
         password
     };
 
-    // إرسال التغييرات إلى الملف JSON (هنا نستخدم fetch لمحاكاة التحديث)
     fetch('../data/profile.json', {
         method: 'PUT',
         headers: {
@@ -55,7 +49,6 @@ const saveChanges = () => {
     .catch(error => console.error('Error saving user data:', error));
 };
 
-// عرض رسالة التأكيد قبل حفظ التغييرات
 const confirmSaveChanges = () => {
     Swal.fire({
         title: 'Are you sure?',
@@ -71,11 +64,9 @@ const confirmSaveChanges = () => {
     });
 };
 
-// تحميل البيانات عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', loadUserData);
 
-// إضافة حدث عند الضغط على زر "Save Changes"
 document.querySelector('.submit-btn').addEventListener('click', (event) => {
-    event.preventDefault(); // منع إرسال النموذج
+    event.preventDefault();
     confirmSaveChanges();
 });

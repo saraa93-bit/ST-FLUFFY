@@ -1,4 +1,3 @@
-/* تعيين خط افتراضي */
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +5,6 @@
     font-family: Arial, sans-serif;
 }
 
-/* تنسيق الحاوية الرئيسية */
 .profile-container {
     width: 100%;
     max-width: 600px;
@@ -18,7 +16,6 @@
     border-radius: 18px;
 }
 
-/* عنوان الصفحة */
 .profile-title {
     text-align: center;
     color: #b02626;
@@ -27,13 +24,11 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-/* تنسيق النموذج */
 .profile-form {
     display: flex;
     flex-direction: column;
 }
 
-/* تنسيق الحقول */
 .input-label {
     margin-bottom: 15px;
     font-weight: bold;
@@ -50,13 +45,11 @@
     box-sizing: border-box;
 }
 
-/* تأثير عند التركيز على الحقول */
 .input-field:focus {
     border-color: #4CAF50;
     outline: none;
 }
 
-/* تنسيق زر حفظ التغييرات */
 .submit-btn {
     padding: 12px;
     background-color: #a80404;
@@ -71,7 +64,6 @@
     transition: background-color 0.3s;
 }
 
-/* تغيير لون الزر عند التمرير */
 .submit-btn:hover {
     background-color: #cb0505;
 }

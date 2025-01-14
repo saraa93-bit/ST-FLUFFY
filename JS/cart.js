@@ -43,8 +43,7 @@ function removeFromCart(productId) {
 }
 
 window.onload = loadCart;
-// وظيفة التحويل إلى صفحة العنوان ورقم الهاتف عند الضغط على زر "Checkout"
 document.querySelector('.checkout-btn').addEventListener('click', function() {
-  window.location.href = 'checkout.html'; // تأكد من أن لديك صفحة checkout.html
+  window.location.href = 'checkout.html';
 });
 

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #fbfbf7 0%, #f3f3f0 100%);
     margin: 0;
     padding: 0;
 }
@@ -10,19 +10,32 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #e9e9ea;
+    flex-direction: column;
+    background-color: #f4f6eb;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-logo {
+    font-size: 2.1rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: rgb(206, 5, 5);
+    font-family: "Dancing Script", serif;
 }
 
 .register-form {
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    margin:10px;
 }
 
-.register-form h2 {
+.register-form h3 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
@@ -62,7 +75,7 @@ body {
 .register-btn {
     width: 100%;
     padding: 12px;
-    background-color: #69b3b3;
+    background-color: #343434;
     color: white;
     border: none;
     border-radius: 5px;
@@ -72,7 +85,7 @@ body {
 }
 
 .register-btn:hover {
-    background-color: #76cdd6;
+    background-color: #484848;
 }
 
 .login-link {
@@ -89,4 +102,12 @@ body {
 .login-link a:hover {
     text-decoration: underline;
     color: #07b5cc;
+}
+#role{
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
 }

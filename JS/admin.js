@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <td>${user.email}</td>
                 <td>${user.role}</td>
                 <td>
-                    <button onclick="editUser(${index})">Edit</button>
+                    <button onclick="window.location.href = '../HTML/edit-user.html?id=${user.id}'">Edit</button>
                     <button onclick="deleteUser(${index})">Delete</button>
                 </td>
             `;
@@ -100,54 +100,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         return true;
     }
 
-    window.addUser = function() {
-        clearErrors();
-        
-        const nameValid = validateField('userName', 'nameError', 'User Name should not be empty');
-        const emailValid = validateField('userEmail', 'emailError', 'Valid Email is required');
-        const passwordValid = validateField('userPassword', 'passwordError', 'Password should not be empty');
-        const roleValid = validateField('userrole', 'roleError', 'Role should not be empty');
-        
-        if (!(nameValid && emailValid && passwordValid && roleValid)) {
-            Swal.fire('Error', 'Please fix the errors in the form!', 'error');
-            return;
-        }
-
-        const name = document.getElementById('userName').value;
-        const email = document.getElementById('userEmail').value;
-        const password = document.getElementById('userPassword').value;
-        const role = document.getElementById('userrole').value;
-
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password, role })
-        })
-        .then(response => response.json())
-        .then(() => {
-            Swal.fire('Success!', 'User Added Successfully!', 'success');
-            loadUsers();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            Swal.fire('Error', 'Failed to add user!', 'error');
-        });
-
-        document.getElementById('addUserForm').reset();
-        window.location.href = '../HTML/admin.html';
-    }
-
     window.deleteUser = async (index) => {
         try {
-            const response = await fetch('http://localhost:5000/users');
-            let users = await response.json();
-            users.splice(index, 1);
-            Swal.fire('Deleted!', 'User deleted successfully!', 'success');
-            renderUsers(users);
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to delete this user?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'Cancel',
+            });
+    
+            if (result.isConfirmed) {
+                const response = await fetch('http://localhost:5000/users');
+                let users = await response.json();
+                
+                users.splice(index, 1);
+                Swal.fire('Deleted!', 'User deleted successfully!', 'success');
+                renderUsers(users);
+            } else {
+                Swal.fire('Cancelled', 'User was not deleted', 'info');
+            }
+    
         } catch (error) {
             console.error("Error deleting user:", error);
+            Swal.fire('Error', 'There was an error deleting the user.', 'error');
         }
-    }
+    };
+    
 
     loadUsers();
 });

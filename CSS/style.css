@@ -398,3 +398,22 @@ body, html {
     
     font-size: 3.2rem;
 }
+.profile-icon-container {
+    margin: 20px;
+    padding: 10px;
+}
+
+.profile-icon-container a {
+    text-decoration: none;
+    color: #bb0505;
+    margin: 40px;
+    font-size: 29px;
+}
+
+.profile-icon-container a:hover {
+    color: #f85b5b;
+}
+
+.profile-icon-container i {
+    margin-right: 35px;
+}

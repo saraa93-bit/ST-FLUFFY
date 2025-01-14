@@ -30,27 +30,46 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         if (user) {
             localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-            if (user.role === 'admin') {
-                successMessage.textContent = 'successfully login as an admin';
-                setTimeout(() => window.location.href = '../HTML/admin.html', 1500);
-            } 
-            else if (user.role === 'customer') {
-                successMessage.textContent = 'successfully login as a user';
-                setTimeout(() => window.location.href = '/index.html', 1500);
-            } 
-            else if (user.role === 'seller') {
-                successMessage.textContent = 'successfully login as a seller';
-                setTimeout(() => window.location.href = '../HTML/seller.html', 1500);
-            } 
-            else {
-                errorElement.textContent = 'email or password is incorrect';
-            }
+            // إظهار رسالة النجاح بناءً على الدور
+            successMessage.textContent = `Successfully logged in as ${user.role}`;
+            setTimeout(() => {
+                if (user.role === 'admin') {
+                    window.location.href = '../HTML/admin.html';
+                } else if (user.role === 'customer') {
+                    window.location.href = '/index.html';
+                    showProfileIcon(user);  // إظهار أيقونة الملف الشخصي للمستخدمين من نوع customer فقط
+                } else if (user.role === 'seller') {
+                    window.location.href = '../HTML/seller.html';
+                }
+            }, 1500);
         } else {
-            errorElement.textContent = 'email or password is incorrect';
+            errorElement.textContent = 'Email or password is incorrect';
         }
 
     } catch (error) {
-        console.error('error while loading', error);
-        errorElement.textContent = 'error while login in';
+        console.error('Error while loading', error);
+        errorElement.textContent = 'Error while logging in';
     }
 });
+
+// دالة لعرض أيقونة الملف الشخصي للمستخدمين من نوع "customer"
+function showProfileIcon(user) {
+    if (user.role === 'customer') {  // التأكد أن الدور هو "customer"
+        const profileIconContainer = document.createElement('div');
+        profileIconContainer.classList.add('profile-icon-container');
+        
+        profileIconContainer.innerHTML = `
+            <a href="../HTML/profile.html" id="profileIcon" title="Edit Profile">
+                <i class="fa fa-user"></i> Profile
+            </a>
+        `;
+        
+        // إضافة الأيقونة إلى الهيدر
+        const header = document.querySelector('header');  // تأكد أن الهيدر موجود في الصفحة
+        if (header) {
+            header.appendChild(profileIconContainer);  // إضافة الأيقونة داخل الهيدر
+        } else {
+            console.error('Header element not found');
+        }
+    }
+}

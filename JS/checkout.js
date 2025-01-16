@@ -1,41 +1,74 @@
-const cartItems = [
-    { id: 1, name: "Chocolate Cake", price: 15.99 },
-    { id: 2, name: "Vanilla Cupcake", price: 7.99 }
-];
+document.addEventListener('DOMContentLoaded', function () {
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
 
-function calculateTotal() {
-    let total = 0;
-    cartItems.forEach(item => {
-        total += item.price;
-    });
-    return total;
-}
-
-function placeOrder() {
-    const user = {
-        id: Math.floor(Math.random() * 1000),
-        name: "John Doe"
-    };
-
-    const order = {
-        id: Math.floor(Math.random() * 10000),
-        userId: user.id,
-        userName: user.name,
-        products: cartItems.map(item => item.name),
-        totalPrice: calculateTotal(),
-        date: new Date().toISOString()
-    };
-
-    const confirmOrder = confirm("Are you sure you want to place this order?");
-    if (confirmOrder) {
-        let orders = JSON.parse(localStorage.getItem("orders")) || [];
-        orders.push(order);
-        localStorage.setItem("orders", JSON.stringify(orders));
-
-        alert("Order placed. We will contact you soon!");
-    } else {
-        alert("Order canceled.");
+    if (!user) {
+        window.location.href = '../HTML/login.html';
+        return;
     }
-}
 
-document.querySelector(".place-order-btn").addEventListener("click", placeOrder);
+    document.getElementById('name').value = user.name;
+    document.getElementById('email').value = user.email;
+
+    document.getElementById('checkout-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const form = document.getElementById('checkout-form');
+
+        // Prevent multiple messages
+        const existingMessage = document.getElementById('success-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        if (!phone || !address) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Please fill in all fields correctly.',
+            });
+            return;
+        }
+
+        const order = {
+            name: user.name,
+            email: user.email,
+            phone: phone,
+            address: address,
+            payment: 'Cash on Delivery',
+            items: JSON.parse(localStorage.getItem('cart')) || []
+        };
+
+        // Save order in JSON format
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        // Show success message once
+        const successMessage = document.createElement('p');
+        successMessage.id = 'success-message';
+        successMessage.textContent = 'Order placed successfully! You will receive a confirmation email shortly.';
+        successMessage.style.color = 'green';
+        successMessage.style.marginTop = '10px';
+        form.appendChild(successMessage);
+
+        // Trigger the Swal confirmation after 5 seconds
+        setTimeout(() => {
+            Swal.fire({
+                icon: 'success',
+                title: 'Order Confirmed!',
+                text: 'Would you like to return to the homepage or continue shopping?',
+                showCancelButton: true,
+                confirmButtonText: 'Return to Home',
+                cancelButtonText: 'Continue Shopping'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/index.html';
+                } else {
+                    window.location.href = '../HTML/product.html';
+                }
+            });
+        }, 3000);
+    });
+});

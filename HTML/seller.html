@@ -3,11 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>seller-page</title>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="../CSS/seller.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 Library -->
+    <link rel="stylesheet" href="../CSS/cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>seller page</h1>
+    <header>
+        <div class="logo">
+            <h1>ST<span class="icon">🍰</span>FLUFFY</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="form-container">
+        <h2>Add New Product</h2>
+        <form id="productForm" novalidate>
+            <!-- اسم المنتج -->
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName">
+            <p class="error" id="nameError"></p>
+    
+            <!-- الوصف -->
+            <label for="productDescription">Description:</label>
+            <textarea id="productDescription"></textarea>
+            <p class="error" id="descriptionError"></p>
+    
+            <!-- تحميل الصورة -->
+            <label for="productImage">Product Image:</label>
+            <input type="file" id="productImage" accept="image/*">
+            <p class="error" id="imageError"></p>
+    
+            <!-- السعر -->
+            <label for="productPrice">Price:</label>
+            <input type="number" id="productPrice">
+            <p class="error" id="priceError"></p>
+    
+            <!-- زر الإضافة -->
+            <button type="submit">Add Product</button>
+        </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script src="../JS/seller.js"></script>
+
 </body>
 </html>

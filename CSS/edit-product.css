@@ -1,29 +1,90 @@
+/* إعدادات عامة */
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-table {
+
+/* تنسيق العنوان */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* تنسيق النموذج */
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    border-collapse: collapse;
+    max-width: 600px;
+    box-sizing: border-box;
 }
-th, td {
+
+/* تنسيق الحقول */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* تنسيق التسميات (labels) */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* تنسيق المدخلات (inputs) */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
     border: 1px solid #ddd;
-    padding: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
 }
-th {
-    background-color: #007BFF;
-    color: white;
+
+/* تنسيق الصورة */
+#productImage {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 4px;
 }
-td[contenteditable="true"] {
-    background-color: #e0f7fa;
-    cursor: pointer;
-}
-#saveChanges {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: green;
+
+/* تنسيق زر الحفظ */
+button {
+    background-color: #4CAF50;
     color: white;
     border: none;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* تنسيق الحقول المتعددة أو المدخلات مع الملفات */
+.form-group input[type="file"] {
+    padding: 5px;
+}
+
+/* إضافة هوامش للمجموعة بأكملها */
+#editProductForm {
+    width: 100%;
 }

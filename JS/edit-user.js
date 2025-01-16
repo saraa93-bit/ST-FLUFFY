@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const updatedUser = {
                         id: row.cells[0].textContent.trim(),
                         name: row.cells[1].textContent.trim(),
-                        email: row.cells[2].textContent.trim(),
-                        role: row.cells[3].textContent.trim(),
+                        role: row.cells[2].textContent.trim(),  // تم تصحيح ترتيب الحقول
+                        email: row.cells[3].textContent.trim(), // تم تصحيح ترتيب الحقول
                         password: row.cells[4].textContent.trim()
                     };
 

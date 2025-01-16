@@ -27,17 +27,16 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; 
+    width: 25%; 
     height: 100%;
     background-color: #333;
-    color: white;
     padding-top: 20px;
     overflow-y: auto;
     z-index: 1000;
 }
 
 .sidebar a {
-    color: white;
+    color:#a54456;
     padding: 10px 15px;
     margin: 20px;
     text-decoration: none;
@@ -47,7 +46,12 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #575757;
+    background-color: #afaaaa;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+    border-radius: 10px;
+    color:white;
+    padding: 10px
 }
 
 .admin-panel {
@@ -60,23 +64,36 @@ hr {
     color: #ea0c0c;
 }
 
-.admin-btn {
+.admin-btn-add {
     padding: 13px;
-    margin-top: 30px;
+    margin: 30px 20px;
     border: none;
-    background-color: #770202;
+    background-color: #a54456;
     color: white;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: 0.3s ease;
     
 }
 
-.admin-btn:hover {
-    background-color: #b30000;
+.admin-btn-add:hover, .admin-btn-edit-btn:hover {
+    background-color: #a82424;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.2rem;
 }
-
+.admin-btn-edit-btn {
+    padding: 13px;
+    margin-top: 30px;
+    border: none;
+    background-color: #a54456;
+    color: rgb(254, 254, 254);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.3s ease;
+    
+}
 .admin-form {
     display: none;
     padding: 20px;

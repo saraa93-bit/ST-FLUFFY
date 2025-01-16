@@ -54,6 +54,7 @@
 .login-header {
     font-size: 2rem;
     margin-bottom: 1rem;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 .input-group-login {
@@ -62,11 +63,13 @@
 }
 
 .input-field-login {
-    width: 100%;
+    width: 90%;
     padding: 15px;
     border: 2px solid #ddd;
     border-radius: 12px;
-    font-size: 1.2rem;
+    margin:0 auto;
+    font-size: 1.1rem;
+    display:block;
     outline: none;
     transition: border-color 0.3s ease;
 }

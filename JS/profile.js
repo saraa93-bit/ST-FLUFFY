@@ -1,72 +1,72 @@
-const loadUserData = () => {
-    fetch('../data/profile.json')
-        .then(response => response.json())
-        .then(data => {
-            const user = data.users[0];
-            document.querySelector('.input-field[name="username"]').value = user.username;
-            document.querySelector('.input-field[name="email"]').value = user.email;
-            document.querySelector('.input-field[name="password"]').value = user.password;
-            document.querySelector('.input-field[name="confirm-password"]').value = user.password;
-        })
-        .catch(error => console.error('Error loading user data:', error));
-};
+document.addEventListener("DOMContentLoaded", async () => {
+    const usernameInput = document.querySelector('input[name="username"]');
+    const emailInput = document.querySelector('input[name="email"]');
+    const passwordInput = document.querySelector('input[name="password"]');
+    const confirmPasswordInput = document.querySelector('input[name="confirm-password"]');
+    const form = document.querySelector('.profile-form');
 
-const saveChanges = () => {
-    const username = document.querySelector('.input-field[name="username"]').value;
-    const email = document.querySelector('.input-field[name="email"]').value;
-    const password = document.querySelector('.input-field[name="password"]').value;
-    const confirmPassword = document.querySelector('.input-field[name="confirm-password"]').value;
+    const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
+    if (!loggedInUserEmail) {
+        Swal.fire('Error', 'No logged-in user found. Redirecting to login page.', 'error');
+        window.location.href = "../HTML/login.html"; // توجيه لصفحة تسجيل الدخول إذا لم يوجد
         return;
     }
 
-    const updatedData = {
-        id: 1,
-        username,
-        email,
-        password
-    };
+    async function fetchUserData() {
+        try {
+            const response = await fetch('http://localhost:5000/users');
+            if (!response.ok) throw new Error('Failed to fetch user data');
+            const users = await response.json();
 
-    fetch('../data/profile.json', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ users: [updatedData] })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('User data updated successfully:', data);
-        Swal.fire({
-            title: 'Success!',
-            text: 'Your profile has been updated.',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-    })
-    .catch(error => console.error('Error saving user data:', error));
-};
+            const user = users.find(u => u.email === loggedInUserEmail);
 
-const confirmSaveChanges = () => {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "Do you want to save the changes?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'Cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            saveChanges();
+            if (!user) {
+                Swal.fire('Error', 'User not found.', 'error');
+                return;
+            }
+
+            // ✅ عرض البيانات في الحقول
+            usernameInput.value = user.name || '';  // تجنب undefined
+            emailInput.value = user.email || '';
+            passwordInput.value = user.password || '';
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire('Error', 'Error fetching data.', 'error');
+        }
+    }
+
+    await fetchUserData();
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            Swal.fire('Error', 'Passwords do not match.', 'error');
+            return;
+        }
+
+        try {
+            const updatedUser = {
+                name: usernameInput.value.trim(),
+                email: emailInput.value.trim(),
+                password: passwordInput.value.trim()
+            };
+
+            const response = await fetch(`http://localhost:5000/users/${loggedInUserEmail}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedUser)
+            });
+
+            if (!response.ok) throw new Error('Failed to update user data');
+
+            Swal.fire('Success', 'Profile updated successfully!', 'success');
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire('Error', 'Failed to update profile.', 'error');
         }
     });
-};
-
-document.addEventListener('DOMContentLoaded', loadUserData);
-
-document.querySelector('.submit-btn').addEventListener('click', (event) => {
-    event.preventDefault();
-    confirmSaveChanges();
 });

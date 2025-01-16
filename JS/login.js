@@ -13,60 +13,74 @@ function togglePasswordVisibility() {
     }
 }
 
-document.getElementById('loginForm').addEventListener('submit', async function (event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
 
-    const email = document.querySelector('input[name="email"]').value;
-    const password = document.querySelector('input[name="password"]').value;
-    const errorElement = document.getElementById('Error');
-    const successMessage = document.getElementById('successMessage');
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const errorElement = document.getElementById('Error');
+            const successMessage = document.getElementById('successMessage');
 
-    try {
-        const response = await fetch('../DB/db.json');
-        const data = await response.json();
+            try {
+                const response = await fetch('../DB/db.json');
+                const data = await response.json();
 
-        const user = data.users.find(user => user.email === email && user.password === password);
+                const user = data.users.find(user => user.email === email && user.password === password);
 
-        if (user) {
-            localStorage.setItem('loggedInUser', JSON.stringify(user));
+                if (user) {
+                    localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-            successMessage.textContent = `Successfully logged in as ${user.role}`;
-            setTimeout(() => {
-                if (user.role === 'admin') {
-                    window.location.href = '../HTML/admin.html';
-                } else if (user.role === 'customer') {
-                    window.location.href = '/index.html';
-                    showProfileIcon(user);
-                } else if (user.role === 'seller') {
-                    window.location.href = '../HTML/seller.html';
+                    successMessage.textContent = `Successfully logged in as ${user.role}`;
+                    setTimeout(() => {
+                        if (user.role === 'admin') {
+                            window.location.href = '../HTML/admin.html';
+                        } else if (user.role === 'customer') {
+                            window.location.href = '/index.html';
+                            showProfileIcon(user);
+                        } else if (user.role === 'seller') {
+                            window.location.href = '../HTML/seller.html';
+                        }
+                    }, 1500);
+                } else {
+                    errorElement.textContent = 'Email or password is incorrect';
                 }
-            }, 1500);
-        } else {
-            errorElement.textContent = 'Email or password is incorrect';
-        }
 
-    } catch (error) {
-        console.error('Error while loading', error);
-        errorElement.textContent = 'Error while logging in';
+            } catch (error) {
+                console.error('Error while loading', error);
+                errorElement.textContent = 'Error while logging in';
+            }
+        });
+    } 
+
+    // تعريف loginLink داخل الدالة showProfileIcon
+    function showProfileIcon(user) {
+        if (user.role === 'customer') {
+            // تحديد رابط Login هنا
+            const loginLink = document.querySelector('.nav ul li a[href="HTML/login.html"]'); // تحديد زر Login
+
+            // إخفاء رابط Login إذا كان المستخدم customer
+            if (loginLink) {
+                loginLink.style.display = 'none';
+            }
+
+            const profileIconContainer = document.createElement('div');
+            profileIconContainer.classList.add('profile-icon-container');
+
+            profileIconContainer.innerHTML = `
+                <a href="../HTML/profile.html" id="profileIcon" title="Edit Profile">
+                    <i class="fa fa-user"></i> Profile
+                </a>
+            `;
+
+            const header = document.querySelector('header');
+            if (header) {
+                header.appendChild(profileIconContainer);
+            } else {
+                console.error('Header element not found');
+            }
+        }
     }
 });
-
-function showProfileIcon(user) {
-    if (user.role === 'customer') {
-        const profileIconContainer = document.createElement('div');
-        profileIconContainer.classList.add('profile-icon-container');
-        
-        profileIconContainer.innerHTML = `
-            <a href="../HTML/profile.html" id="profileIcon" title="Edit Profile">
-                <i class="fa fa-user"></i> Profile
-            </a>
-        `;
-        
-        const header = document.querySelector('header');
-        if (header) {
-            header.appendChild(profileIconContainer);
-        } else {
-            console.error('Header element not found');
-        }
-    }
-}

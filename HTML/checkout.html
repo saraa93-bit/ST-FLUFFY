@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="../CSS/checkout.css">
+    <link rel="stylesheet" href="../CSS/cart.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -12,21 +16,45 @@
         <div class="logo">
             <h1>ST<span class="icon">🍰</span>FLUFFY</h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="Profile.html">Profile</a></li>
+
+            </ul>
+        </nav>
     </header>
+    <h2>please, enter your information to place the order. </h2>
 
-    <section id="checkout-section">
-        <h2>Checkout Information</h2>
+    <form id="checkout-form">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" disabled>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" disabled>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" >
+        </div>
+        <div>
+            <label for="payment">Payment Method:</label>
+            <select id="payment" name="payment" required disabled>
+                <option value="cash">Cash on Delivery</option>
+            </select>
+        </div>
 
-        <form id="checkout-form">
-            <label for="address">Address</label>
-            <input type="text" id="address" placeholder="Enter your address" required>
-
-            <label for="phone">Phone Number</label>
-            <input type="text" id="phone" placeholder="Enter your phone number" required>
-
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-    </section>
+        <button type="submit">Confirm Order</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="../JS/checkout.js"></script>
 </body>

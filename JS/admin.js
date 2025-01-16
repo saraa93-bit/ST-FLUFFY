@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+window.addEventListener("DOMContentLoaded", async () => {
     const userTableBody = document.getElementById("userTableBody");
 
     const style = document.createElement('style');
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            border-radius: 15px;
         }
 
         th, td {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             margin: 2px;
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 12px;
         }
 
         button:hover {
@@ -41,11 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         button:nth-child(1) {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        button:nth-child(2) {
             background-color: #f44336;
             color: white;
         }
@@ -56,7 +52,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             const response = await fetch('http://localhost:5000/users');
             const users = await response.json();
-            renderUsers(users);
+            if (Array.isArray(users) && users.length > 0) {
+                renderUsers(users);
+            } else {
+                console.error("No users found or invalid data format.");
+            }
         } catch (error) {
             console.error("Error loading users:", error);
         }
@@ -64,16 +64,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function renderUsers(users) {
         userTableBody.innerHTML = "";
-        users.forEach((user, index) => {
+        users.forEach((user) => {
             const row = document.createElement("tr");
+
+            const userName = user.username || user.name;
+
             row.innerHTML = `
                 <td>${user.id}</td>
-                <td>${user.name}</td>
+                <td>${userName}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
                 <td>
-                    <button onclick="window.location.href = '../HTML/edit-user.html?id=${user.id}'">Edit</button>
-                    <button onclick="deleteUser(${index})">Delete</button>
+                    <button onclick="deleteUser(${user.id})">Delete</button>
                 </td>
             `;
             userTableBody.appendChild(row);
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return true;
     }
 
-    window.deleteUser = async (index) => {
+    window.deleteUser = async (userId) => {
         try {
             const result = await Swal.fire({
                 title: 'Are you sure?',
@@ -110,24 +112,27 @@ document.addEventListener("DOMContentLoaded", async () => {
                 confirmButtonText: 'Yes',
                 cancelButtonText: 'Cancel',
             });
-    
+
             if (result.isConfirmed) {
-                const response = await fetch('http://localhost:5000/users');
-                let users = await response.json();
-                
-                users.splice(index, 1);
-                Swal.fire('Deleted!', 'User deleted successfully!', 'success');
-                renderUsers(users);
+                // أرسل طلب DELETE للسيرفر
+                const deleteResponse = await fetch(`http://localhost:5000/users/${userId}`, {
+                    method: 'DELETE',
+                });
+
+                if (deleteResponse.ok) {
+                    Swal.fire('Deleted!', 'User deleted successfully!', 'success');
+                    loadUsers(); // إعادة تحميل البيانات بعد الحذف
+                } else {
+                    throw new Error('Failed to delete user on the server');
+                }
             } else {
                 Swal.fire('Cancelled', 'User was not deleted', 'info');
             }
-    
         } catch (error) {
             console.error("Error deleting user:", error);
             Swal.fire('Error', 'There was an error deleting the user.', 'error');
         }
     };
-    
 
     loadUsers();
 });

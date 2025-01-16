@@ -1,3 +1,15 @@
+document.addEventListener("DOMContentLoaded", function() {
+    // أضف الـ event listener بعد تحميل الصفحة بالكامل
+    const checkoutButton = document.querySelector('.checkout-btn');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', function() {
+            window.location.href = '../HTML/checkout.html';
+        });
+    } 
+    // تحميل سلة المشتريات
+    loadCart();
+});
+
 function loadCart() {
   fetch('http://localhost:5000/cart')
       .then(response => response.json())
@@ -25,7 +37,7 @@ function loadCart() {
               totalPriceDiv.innerHTML = `Total: ${totalPrice} L.E`;
           }
       })
-      .catch(error => console.error('Error loading cart:', error));
+      
 }
 
 function updateQuantity(productId, quantity) {
@@ -41,9 +53,3 @@ function removeFromCart(productId) {
       .then(loadCart)
       .catch(error => console.error('Error removing product:', error));
 }
-
-window.onload = loadCart;
-document.querySelector('.checkout-btn').addEventListener('click', function() {
-  window.location.href = 'checkout.html';
-});
-

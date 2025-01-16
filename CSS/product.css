@@ -2,25 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
 }
 
 body {
-  background-color: #f8f9fa;
-  color: #4f4d4d;
-  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
 }
+
 header {
   background-color: #faf8f8;
   color: rgb(46, 46, 46);
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  display: absolute;
   align-items: center;
   box-shadow: 0 4px 6px rgba(7, 7, 7, 0.1);
 }
 
-header .logo h1 {
+.product-logo h1 {
   font-size: 2rem;
   font-weight: bold;
   font-family: 'Dancing Script', serif;
@@ -29,7 +30,7 @@ header .logo h1 {
   align-items: center;
 }
 
-header .logo .icon {
+.product-logo .icon {
   margin-left: 10px;
   font-size: 1.5rem;
 }
@@ -50,9 +51,8 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-  color: #570505;
+  color: #480101;
 }
-
 #cart-section {
   margin: 40px auto;
   width: 90%;
@@ -141,17 +141,18 @@ nav ul li a:active {
   }
 }
 
-#searchBar {
-  width: 40%;
-  max-width: 600px;
+.pro-ser {
+  width: 20%;
+  max-width: 400px;
   padding: 10px;
   margin: 20px auto;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  border: 2px solid #f5f5f5;
+  border-radius: 18px;
   font-size: 18px;
   display: block;
-}
+  position:absolute;
 
+}
 #product-section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -160,7 +161,7 @@ nav ul li a:active {
   justify-content: center;
 }
 
-#results {
+.pro-res {
   max-width: 200px;
   margin: 5px auto;
   border: 1px solid #ddd;
@@ -216,24 +217,79 @@ nav ul li a:active {
 
 .price {
   font-size: 22px;
-  color: #068b25;
+  color: #236933;
   font-weight: bold;
   margin: auto;
 }
 
 .btn {
   padding: 10px 12px;
-  background-color: #e63946;
+  background-color: #128b22;
   border: none;
   border-radius: 18px;
   color: white;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   transition: background 0.3s ease;
   margin: auto;
 }
 
 .btn:hover {
-  background-color: #f26573;
+  background-color: #3ab525;
+}
+.highlight {
+  border: 2px solid #f8eca8;
+  box-shadow: 0px 0px 15px rgba(214, 235, 79, 0.9);
+  background-color: yellow;
+  animation: highlightAnimation 2s ease-out;
+
+}
+@keyframes highlightAnimation {
+  0% { background-color: yellow; }
+  100% { background-color: transparent; }
 }
 
+#searchBar {
+  width: 20%;
+  max-width: 600px;
+  padding: 10px;
+  margin: 20px auto;
+  border: 2px solid #ddd;
+  border-radius: 18px;
+  font-size: 18px;
+  display: block;
+  position: relative; /* يجعل النتائج تظهر تحت البحث */
+}
+
+#results {
+  max-width: 600px;
+  margin: 5px auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: white;
+  display: none;
+  position: absolute; /* ستظهر النتائج أسفل خانة البحث */
+  top: 11%; /* ستظهر مباشرة أسفل خانة البحث */
+  left: 40%;
+  z-index: 100; /* لضمان الظهور فوق العناصر الأخرى */
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.result-item:hover {
+  background: #f1f1f1;
+}
+
+#product-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* عرض 3 منتجات بجانب بعض */
+  gap: 20px;
+  padding: 30px;
+  justify-content: center;
+}

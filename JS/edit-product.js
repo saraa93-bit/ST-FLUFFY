@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
-    const productsTableBody = document.getElementById('productsTableBody');
     let uploadedImage = null;
 
     async function fetchProduct() {
@@ -9,19 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const response = await fetch(`http://localhost:5000/products/${productId}`);
             const product = await response.json();
 
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${product.id}</td>
-                <td contenteditable="true" data-field="name">${product.name}</td>
-                <td contenteditable="true" data-field="description">${product.description}</td>
-                <td contenteditable="true" data-field="price">${product.price}</td>
-                <td>
-                    <img id="productImage" src="${product.image}" alt="Product Image" width="150"><br>
-                    <input type="file" id="imageUpload" accept="image/*">
-                </td>
-            `;
-            row.dataset.productId = product.id;
-            productsTableBody.appendChild(row);
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productDescription').value = product.description;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productImage').src = product.image;
 
             document.getElementById('imageUpload').addEventListener('change', (event) => {
                 const file = event.target.files[0];
@@ -53,12 +44,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (result.isConfirmed) {
             try {
-                const row = document.querySelector('#productsTableBody tr');
                 const updatedProduct = {
-                    id: row.cells[0].textContent.trim(),
-                    name: row.cells[1].textContent.trim(),
-                    description: row.cells[2].textContent.trim(),
-                    price: parseFloat(row.cells[3].textContent.trim()),
+                    id: document.getElementById('productId').value.trim(),
+                    name: document.getElementById('productName').value.trim(),
+                    description: document.getElementById('productDescription').value.trim(),
+                    price: parseFloat(document.getElementById('productPrice').value.trim()),
                     image: uploadedImage || document.getElementById('productImage').src
                 };
 

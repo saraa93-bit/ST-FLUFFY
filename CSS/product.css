@@ -271,7 +271,7 @@ nav ul li a:active {
   display: none;
   position: absolute; /* ستظهر النتائج أسفل خانة البحث */
   top: 11%; /* ستظهر مباشرة أسفل خانة البحث */
-  left: 40%;
+  left: 25%;
   z-index: 100; /* لضمان الظهور فوق العناصر الأخرى */
 }
 
@@ -292,4 +292,32 @@ nav ul li a:active {
   gap: 20px;
   padding: 30px;
   justify-content: center;
+}
+.favorite-icon {
+  position: absolute; /* وضع الأيقونة في الزاوية العلوية اليسرى */
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  color: #8c8b8b; /* لون القلب غير المفضل */
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+}
+
+.favorite-icon.active {
+  color: #ed0808; /* لون القلب المفضل */
+}
+
+.product-card {
+  position: relative; /* لجعل القلب يظهر داخل المنتج */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
 }

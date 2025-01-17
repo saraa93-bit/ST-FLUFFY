@@ -1,72 +1,67 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const usernameInput = document.querySelector('input[name="username"]');
-    const emailInput = document.querySelector('input[name="email"]');
-    const passwordInput = document.querySelector('input[name="password"]');
-    const confirmPasswordInput = document.querySelector('input[name="confirm-password"]');
-    const form = document.querySelector('.profile-form');
+document.addEventListener('DOMContentLoaded', function () {
+    const loggedInUserEmail = localStorage.getItem('loggedInUserEmail'); // جلب إيميل المستخدم المسجل الدخول
 
-    const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+    console.log("Logged in user email from localStorage:", loggedInUserEmail); // فحص الإيميل
 
     if (!loggedInUserEmail) {
-        Swal.fire('Error', 'No logged-in user found. Redirecting to login page.', 'error');
-        window.location.href = "../HTML/login.html"; // توجيه لصفحة تسجيل الدخول إذا لم يوجد
+        window.location.href = 'login.html'; // إذا لم يكن هناك مستخدم مسجل الدخول، يتم تحويله إلى صفحة تسجيل الدخول
         return;
     }
 
-    async function fetchUserData() {
-        try {
-            const response = await fetch('http://localhost:5000/users');
-            if (!response.ok) throw new Error('Failed to fetch user data');
-            const users = await response.json();
+    // جلب بيانات المستخدم من الـ endpoint
+    fetch('http://localhost:5000/users')
+        .then(response => response.json())
+        .then(users => {
+            console.log("Users data from endpoint:", users); // فحص البيانات
 
+            // البحث عن المستخدم المسجل الدخول باستخدام الإيميل
             const user = users.find(u => u.email === loggedInUserEmail);
+            console.log("Found user:", user); // فحص المستخدم الذي تم العثور عليه
 
             if (!user) {
-                Swal.fire('Error', 'User not found.', 'error');
+                console.error("User not found!");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'User Not Found!',
+                    text: 'The logged-in user was not found in the database.',
+                });
                 return;
             }
 
-            // ✅ عرض البيانات في الحقول
-            usernameInput.value = user.name || '';  // تجنب undefined
-            emailInput.value = user.email || '';
-            passwordInput.value = user.password || '';
-        } catch (error) {
-            console.error('Error:', error);
-            Swal.fire('Error', 'Error fetching data.', 'error');
-        }
-    }
+            // تعبئة النموذج ببيانات المستخدم
+            document.getElementById('username').value = user.name || '';
+            document.getElementById('email').value = user.email || '';
+            document.getElementById('password').value = user.password || '';
+            document.getElementById('confirm-password').value = user.password || '';
 
-    await fetchUserData();
+            // إضافة حدث لحفظ التغييرات
+            document.getElementById('profile-form').addEventListener('submit', function (event) {
+                event.preventDefault();
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+                // تحديث بيانات المستخدم
+                user.name = document.getElementById('username').value;
+                user.email = document.getElementById('email').value;
+                user.password = document.getElementById('password').value;
 
-        if (passwordInput.value !== confirmPasswordInput.value) {
-            Swal.fire('Error', 'Passwords do not match.', 'error');
-            return;
-        }
+                // حفظ البيانات المحدثة في localStorage (أو إرسالها إلى الخادم)
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-        try {
-            const updatedUser = {
-                name: usernameInput.value.trim(),
-                email: emailInput.value.trim(),
-                password: passwordInput.value.trim()
-            };
-
-            const response = await fetch(`http://localhost:5000/users/${loggedInUserEmail}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(updatedUser)
+                // عرض رسالة نجاح
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Profile Updated!',
+                    text: 'Your profile has been updated successfully.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
-
-            if (!response.ok) throw new Error('Failed to update user data');
-
-            Swal.fire('Success', 'Profile updated successfully!', 'success');
-        } catch (error) {
-            console.error('Error:', error);
-            Swal.fire('Error', 'Failed to update profile.', 'error');
-        }
-    });
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Failed to fetch user data. Please try again later.',
+            });
+        });
 });

@@ -1,19 +1,4 @@
-function togglePasswordVisibility() {
-    const passwordInput = document.querySelector('input[name="password"]');
-    const icon = document.querySelector('.toggle-password i');
-
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-    } else {
-        passwordInput.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', async function (event) {
@@ -28,9 +13,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 const response = await fetch('../DB/db.json');
                 const data = await response.json();
 
-                const user = data.users.find(user => user.email === email && user.password === password);
+                // التحقق من وجود الإيميل في قاعدة البيانات
+                const user = data.users.find(user => user.email === email);
 
-                if (user) {
+                if (!user) {
+                    errorElement.textContent = 'Email not found. Please sign up.'; // رسالة إذا كان الإيميل غير موجود
+                    return;
+                }
+
+                // التحقق من صحة كلمة المرور
+                if (user.password === password) {
                     localStorage.setItem('loggedInUser', JSON.stringify(user));
 
                     successMessage.textContent = `Successfully logged in as ${user.role}`;
@@ -39,13 +31,16 @@ document.addEventListener("DOMContentLoaded", function() {
                             window.location.href = '../HTML/admin.html';
                         } else if (user.role === 'customer') {
                             window.location.href = '/index.html';
-                            showProfileIcon(user);
+                            hideLoginButton(); // إخفاء زر تسجيل الدخول
+                            showProfileIcon(user); // عرض زر البروفايل
                         } else if (user.role === 'seller') {
-                            window.location.href = '../HTML/seller.html';
+                            window.location.href = '/index.html';
+                            hideLoginButton(); // إخفاء زر تسجيل الدخول
+                            showAddProductButton(user); // عرض زر إضافة منتج
                         }
                     }, 1500);
                 } else {
-                    errorElement.textContent = 'Email or password is incorrect';
+                    errorElement.textContent = 'Incorrect password'; // رسالة إذا كانت كلمة المرور غير صحيحة
                 }
 
             } catch (error) {
@@ -53,19 +48,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 errorElement.textContent = 'Error while logging in';
             }
         });
-    } 
+    }
 
-    // تعريف loginLink داخل الدالة showProfileIcon
+    // دالة لإخفاء زر تسجيل الدخول
+    function hideLoginButton() {
+        const loginButton = document.getElementById('loginButton'); // تحديد زر تسجيل الدخول باستخدام الـ ID
+        if (loginButton) {
+            loginButton.style.display = 'none'; // إخفاء الزر
+        } else {
+            console.error("Login button not found!"); // رسالة خطأ إذا لم يتم العثور على الزر
+        }
+    }
+
+    // دالة لعرض زر البروفايل
     function showProfileIcon(user) {
         if (user.role === 'customer') {
-            // تحديد رابط Login هنا
-            const loginLink = document.querySelector('.nav ul li a[href="HTML/login.html"]'); // تحديد زر Login
-
-            // إخفاء رابط Login إذا كان المستخدم customer
-            if (loginLink) {
-                loginLink.style.display = 'none';
-            }
-
             const profileIconContainer = document.createElement('div');
             profileIconContainer.classList.add('profile-icon-container');
 
@@ -80,6 +77,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 header.appendChild(profileIconContainer);
             } else {
                 console.error('Header element not found');
+            }
+        }
+    }
+
+    // دالة لعرض زر "Add New Product" عند دخول المستخدم بنوع "seller"
+    function showAddProductButton(user) {
+        if (user.role === 'seller') {
+            const header = document.querySelector('header');
+            if (header) {
+                const addProductButton = document.createElement('button');
+                addProductButton.textContent = 'Add New Product';
+                addProductButton.classList.add('btn', 'add-product-btn');
+
+                // عند الضغط على الزر، توجيه المستخدم إلى صفحة seller.html
+                addProductButton.addEventListener('click', function () {
+                    window.location.href = '../HTML/seller.html';
+                });
+
+                // إضافة الزر في الـ header أو في مكان آخر على الصفحة
+                header.appendChild(addProductButton);
             }
         }
     }

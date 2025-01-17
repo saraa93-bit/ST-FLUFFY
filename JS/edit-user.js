@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 row.innerHTML = `
                     <td contenteditable="true" data-field="id">${user.id}</td>
                     <td contenteditable="true" data-field="name">${user.name}</td>
-                    <td contenteditable="true" data-field="role">${user.role}</td>
-                    <td contenteditable="true" data-field="email">${user.email}</td>
+                    <td contenteditable="true" data-field="role">${user.email}</td>
+                    <td contenteditable="true" data-field="email">${user.role}</td>
                     <td contenteditable="true" data-field="password">${user.password}</td>
                 `;
                 row.dataset.userId = user.id;
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const updatedUser = {
                         id: row.cells[0].textContent.trim(),
                         name: row.cells[1].textContent.trim(),
-                        role: row.cells[2].textContent.trim(),  // تم تصحيح ترتيب الحقول
-                        email: row.cells[3].textContent.trim(), // تم تصحيح ترتيب الحقول
+                        email: row.cells[2].textContent.trim(),  
+                        role: row.cells[3].textContent.trim(),
                         password: row.cells[4].textContent.trim()
                     };
 

@@ -1,32 +1,85 @@
+/* تنسيق الجسم (body) */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* جعل الجسم عموديًا */
+    justify-content: flex-start; /* وضع العناصر في الأعلى */
     align-items: center;
     height: 100vh;
     background: #f5f5f5;
 }
 
+/* تنسيق الهيدر */
+header {
+    width: 100%;
+    background-color: #800000; /* لون نبيتي */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+}
+
+header .logo .icon {
+    font-size: 1.5em;
+}
+
+/* تنسيق القائمة في الهيدر */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* تنسيق الفورم */
 .form-container {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    margin-top: 80px; /* مسافة من الهيدر */
 }
 
+/* تنسيق العناوين داخل الفورم */
 h2 {
     text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, cursive;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #800000;
 }
 
+/* تنسيق المدخلات والأزرار داخل الفورم */
 input, textarea, button {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
+/* تنسيق الزر */
 button {
     background-color: #1f2022;
     color: white;
@@ -37,7 +90,14 @@ button {
 button:hover {
     background-color: #434343;
 }
+
+/* تنسيق رسائل الخطأ */
 .error {
     color: red;
     font-size: 14px;
+}
+
+/* إضافة مسافة للمحتوى أسفل الفورم */
+footer {
+    margin-top: 30px;
 }

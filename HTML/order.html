@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders</title>
+    <title>Previous Orders</title>
     <link rel="stylesheet" href="../CSS/order.css">
     <link rel="stylesheet" href="../CSS/cart.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Header Section -->
     <header>
         <div class="logo">
             <h1>ST<span class="icon">🍰</span>FLUFFY</h1>
@@ -20,46 +21,31 @@
                 <li><a href="product.html">Products</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="Profile.html">Profile</a></li>
-
             </ul>
         </nav>
     </header>
+
+    <!-- Orders Section -->
     <div class="container">
-        <h1>order list</h1>
+        <h1>Previous Orders</h1>
         <table id="orders-table">
             <thead>
                 <tr>
-                    <th>order number</th>
-                    <th> customer name</th>
-                    <th>product</th>
-                    <th>total price</th>
-                    <th>constraction</th>
+                    <th>Order Number</th>
+                    <th>Customer Name</th>
+                    <th>Product</th>
+                    <th>Total Price</th>
+                    <th>Construction</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="orders-body">
+                <!-- Data will be inserted dynamically here from JavaScript -->
             </tbody>
         </table>
     </div>
-    
-    <script src="../JS/order.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Previous Orders</title>
-    <link rel="stylesheet" href="path_to_your_css_file.css">
-</head>
-<body>
 
-    <header>
-        <h1>Previous Orders</h1>
-    </header>
-
-    <div id="orders-container"></div>
-
+    <!-- JavaScript to Fetch and Display Orders -->
     <script src="../JS/order.js"></script>
 </body>
 </html>

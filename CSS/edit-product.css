@@ -1,4 +1,3 @@
-/* إعدادات عامة */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -10,7 +9,6 @@ body {
     height: 100vh;
 }
 
-/* تنسيق العنوان */
 h1 {
     text-align: center;
     margin-top: 30px;
@@ -20,7 +18,6 @@ h1 {
     font-weight: bold;
 }
 
-/* تنسيق الرأس */
 header {
     width: 100%;
     background-color: #333;
@@ -65,7 +62,6 @@ header nav ul li a:hover {
     color: #f0a500;
 }
 
-/* تنسيق النموذج */
 form {
     background-color: #fff;
     padding: 30px;
@@ -74,15 +70,13 @@ form {
     width: 100%;
     max-width: 600px;
     box-sizing: border-box;
-    margin-top: 100px; /* لترك المسافة بين الرأس والنموذج */
+    margin-top: 100px;
 }
 
-/* تنسيق الحقول */
 .form-group {
     margin-bottom: 20px;
 }
 
-/* تنسيق التسميات (labels) */
 .form-group label {
     display: block;
     font-size: 14px;
@@ -90,7 +84,6 @@ form {
     margin-bottom: 5px;
 }
 
-/* تنسيق المدخلات (inputs) */
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group input[type="file"] {
@@ -102,7 +95,6 @@ form {
     font-size: 14px;
 }
 
-/* تنسيق الصورة */
 #productImage {
     display: block;
     margin-top: 10px;
@@ -110,7 +102,6 @@ form {
     border-radius: 4px;
 }
 
-/* تنسيق زر الحفظ */
 button {
     background-color: #4CAF50;
     color: white;
@@ -128,12 +119,10 @@ button:hover {
     background-color: #45a049;
 }
 
-/* تنسيق الحقول المتعددة أو المدخلات مع الملفات */
 .form-group input[type="file"] {
     padding: 5px;
 }
 
-/* إضافة هوامش للمجموعة بأكملها */
 #editProductForm {
     width: 100%;
 }

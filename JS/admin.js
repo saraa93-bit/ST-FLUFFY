@@ -83,7 +83,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             const deleteButton = row.querySelector('.delete-btn');
          deleteButton.addEventListener('click', () => {
              const userId = deleteButton.getAttribute('data-user-id');
-             deleteUser(userId); // تمرير الـ ID بشكل صحيح
+             deleteUser(userId);
          });
         });
     }
@@ -109,7 +109,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
     window.deleteUser = async (userId) => {
         try {
-            // تأكيد الحذف باستخدام SweetAlert
             const result = await Swal.fire({
                 title: 'Are you sure?',
                 text: "Do you really want to delete this user?",
@@ -120,18 +119,15 @@ window.addEventListener("DOMContentLoaded", async () => {
             });
     
             if (result.isConfirmed) {
-                // إرسال طلب DELETE إلى السيرفر
                 const deleteResponse = await fetch(`http://localhost:5000/users/${userId}`, {
                     method: 'DELETE',
                 });
     
-                // التحقق من استجابة السيرفر
                 if (deleteResponse.ok) {
                     Swal.fire('Deleted!', 'User deleted successfully!', 'success');
-                    loadUsers(); // إعادة تحميل البيانات بعد الحذف
+                    loadUsers();
                 } else {
-                    // التعامل مع حالة خطأ في السيرفر
-                    const errorText = await deleteResponse.text(); // قراءة نص الخطأ من السيرفر
+                    const errorText = await deleteResponse.text();
                     throw new Error(errorText || 'Failed to delete user on the server');
                 }
             } else {
@@ -139,7 +135,6 @@ window.addEventListener("DOMContentLoaded", async () => {
             }
         } catch (error) {
             console.error("Error deleting user:", error);
-            // إظهار رسالة خطأ باستخدام SweetAlert
             Swal.fire('Error', `There was an error deleting the user: ${error.message}`, 'error');
         }
     };

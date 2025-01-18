@@ -1,4 +1,3 @@
-/* تنسيقات عامة */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -13,56 +12,55 @@ h1 {
     margin: 30px;
 }
 
-/* تنسيقات قائمة المفضلة */
 #wishlist {
     list-style: none;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* تقليل المسافة بين العناصر */
+    gap: 15px;
     justify-content: center;
 }
 
 .wishlist-item {
     background-color: #fff;
     border-radius: 10px;
-    padding: 10px; /* تقليل الحشو */
+    padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 200px; /* تصغير عرض العنصر */
+    width: 200px;
     text-align: center;
     position: relative;
 }
 
 .wishlist-item img {
-    width: 50px; /* تصغير العرض */
-    height: 50px; /* تصغير الارتفاع */
+    width: 50px; 
+    height: 50px; 
     border-radius: 10px;
     margin-bottom: 10px;
-    object-fit: cover; /* التأكد من أن الصورة تتناسب مع الأبعاد الجديدة */
+    object-fit: cover;
 }
 
 .wishlist-item h3 {
-    font-size: 1rem; /* تصغير حجم الخط */
-    margin: 5px 0; /* تقليل المسافة */
+    font-size: 1rem;
+    margin: 5px 0;
 }
 
 .wishlist-item p {
-    font-size: 0.8rem; /* تصغير حجم الخط */
+    font-size: 0.8rem;
     color: #666;
-    margin: 3px 0; /* تقليل المسافة */
+    margin: 3px 0;
 }
 
 .wishlist-item .price {
-    font-size: 0.9rem; /* تصغير حجم الخط */
+    font-size: 0.9rem;
     color: #09940e;
-    margin: 5px 0; /* تقليل المسافة */
+    margin: 5px 0;
 }
 
 .remove-btn {
     background-color: #ff4d4d;
     color: white;
-    padding: 6px 10px; /* تصغير حجم الزر */
-    font-size: 0.8rem; /* تصغير حجم الخط */
+    padding: 6px 10px;
+    font-size: 0.8rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;

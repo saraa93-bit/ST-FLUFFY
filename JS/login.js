@@ -13,15 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 const response = await fetch('../DB/db.json');
                 const data = await response.json();
 
-                // التحقق من وجود الإيميل في قاعدة البيانات
                 const user = data.users.find(user => user.email === email);
 
                 if (!user) {
-                    errorElement.textContent = 'Email not found. Please sign up.'; // رسالة إذا كان الإيميل غير موجود
+                    errorElement.textContent = 'Email not found. Please sign up.';
                     return;
                 }
 
-                // التحقق من صحة كلمة المرور
                 if (user.password === password) {
                     localStorage.setItem('loggedInUser', JSON.stringify(user));
 
@@ -31,16 +29,16 @@ document.addEventListener("DOMContentLoaded", function () {
                             window.location.href = '../HTML/admin.html';
                         } else if (user.role === 'customer') {
                             window.location.href = '/index.html';
-                            hideLoginButton(); // إخفاء زر تسجيل الدخول
-                            showProfileIcon(user); // عرض زر البروفايل
+                            hideLoginButton();
+                            showProfileIcon(user);
                         } else if (user.role === 'seller') {
                             window.location.href = '/index.html';
-                            hideLoginButton(); // إخفاء زر تسجيل الدخول
-                            showAddProductButton(user); // عرض زر إضافة منتج
+                            hideLoginButton();
+                            showAddProductButton(user);
                         }
                     }, 1500);
                 } else {
-                    errorElement.textContent = 'Incorrect password'; // رسالة إذا كانت كلمة المرور غير صحيحة
+                    errorElement.textContent = 'Incorrect password';
                 }
 
             } catch (error) {
@@ -50,17 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // دالة لإخفاء زر تسجيل الدخول
     function hideLoginButton() {
-        const loginButton = document.getElementById('loginButton'); // تحديد زر تسجيل الدخول باستخدام الـ ID
+        const loginButton = document.getElementById('loginButton');
         if (loginButton) {
-            loginButton.style.display = 'none'; // إخفاء الزر
+            loginButton.style.display = 'none';
         } else {
-            console.error("Login button not found!"); // رسالة خطأ إذا لم يتم العثور على الزر
+            console.error("Login button not found!");
         }
     }
 
-    // دالة لعرض زر البروفايل
     function showProfileIcon(user) {
         if (user.role === 'customer') {
             const profileIconContainer = document.createElement('div');
@@ -81,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // دالة لعرض زر "Add New Product" عند دخول المستخدم بنوع "seller"
     function showAddProductButton(user) {
         if (user.role === 'seller') {
             const header = document.querySelector('header');
@@ -90,12 +85,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 addProductButton.textContent = 'Add New Product';
                 addProductButton.classList.add('btn', 'add-product-btn');
 
-                // عند الضغط على الزر، توجيه المستخدم إلى صفحة seller.html
                 addProductButton.addEventListener('click', function () {
                     window.location.href = '../HTML/seller.html';
                 });
 
-                // إضافة الزر في الـ header أو في مكان آخر على الصفحة
                 header.appendChild(addProductButton);
             }
         }

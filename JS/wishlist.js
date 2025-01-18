@@ -1,21 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     const wishlistContainer = document.getElementById('wishlist');
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || []; // تحميل المفضلة
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    // إذا لم يكن هناك منتجات في المفضلة
     if (favorites.length === 0) {
         wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
         return;
     }
 
-    // تحميل المنتجات من API أو localStorage
     fetch('http://localhost:5000/products')
         .then(response => response.json())
         .then(products => {
-            // تصفية المنتجات المفضلة
             const favoriteProducts = products.filter(product => favorites.includes(product.id));
 
-            // عرض المنتجات المفضلة
             favoriteProducts.forEach(product => {
                 const listItem = document.createElement('li');
                 listItem.classList.add('wishlist-item');
@@ -37,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-// دالة لإزالة المنتج من المفضلة
 function removeFromWishlist(productId) {
     Swal.fire({
         title: 'Are you sure?',
@@ -54,7 +49,7 @@ function removeFromWishlist(productId) {
             const index = favorites.indexOf(productId);
 
             if (index !== -1) {
-                favorites.splice(index, 1); // إزالة المنتج من المفضلة
+                favorites.splice(index, 1);
                 localStorage.setItem('favorites', JSON.stringify(favorites));
                 Swal.fire({
                     icon: 'success',
@@ -64,7 +59,6 @@ function removeFromWishlist(productId) {
                     timer: 1500
                 });
 
-                // إعادة تحميل الصفحة لتحديث القائمة
                 setTimeout(() => location.reload(), 1500);
             }
         }

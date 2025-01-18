@@ -1,4 +1,3 @@
-/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f9f9f9;
@@ -48,7 +47,6 @@ nav ul li a:hover {
     color: #ffcc00;
 }
 
-/* Profile Container */
 .profile-container {
     max-width: 600px;
     margin: 50px auto;
@@ -66,7 +64,6 @@ nav ul li a:hover {
     font-family: 'Dancing Script', cursive;
 }
 
-/* Form Styles */
 .profile-form {
     display: flex;
     flex-direction: column;
@@ -109,7 +106,6 @@ nav ul li a:hover {
     background-color: #47d43a;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .profile-container {
         margin: 20px;

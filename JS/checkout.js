@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const address = document.getElementById('address').value;
         const form = document.getElementById('checkout-form');
 
-        // Prevent multiple messages
         const existingMessage = document.getElementById('success-message');
         if (existingMessage) {
             existingMessage.remove();
@@ -40,12 +39,10 @@ document.addEventListener('DOMContentLoaded', function () {
             items: JSON.parse(localStorage.getItem('cart')) || []
         };
 
-        // Save order in JSON format
         let orders = JSON.parse(localStorage.getItem('orders')) || [];
         orders.push(order);
         localStorage.setItem('orders', JSON.stringify(orders));
 
-        // Show success message once
         const successMessage = document.createElement('p');
         successMessage.id = 'success-message';
         successMessage.textContent = 'Order placed successfully! You will receive a confirmation email shortly.';
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
         successMessage.style.marginTop = '10px';
         form.appendChild(successMessage);
 
-        // Trigger the Swal confirmation after 5 seconds
         setTimeout(() => {
             Swal.fire({
                 icon: 'success',

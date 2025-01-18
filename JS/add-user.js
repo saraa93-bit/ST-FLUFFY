@@ -1,9 +1,7 @@
 async function addUser(event) {
-    // منع التحديث الافتراضي للفورم
     event.preventDefault();
 
     try {
-        // أخذ القيم من الحقول
         const userName = document.getElementById('userName').value.trim();
         const userEmail = document.getElementById('userEmail').value.trim();
         const userPassword = document.getElementById('userPassword').value.trim();
@@ -11,7 +9,6 @@ async function addUser(event) {
 
         let isValid = true; 
 
-        // التحقق من صحة البيانات المدخلة
         if (userName.length < 6) {
             displayError('nameError', 'User Name must be at least 6 characters long');
             isValid = false;
@@ -34,10 +31,9 @@ async function addUser(event) {
         }
 
         if (!isValid) {
-            return; // إيقاف التنفيذ إذا كانت البيانات غير صحيحة
+            return;
         }
 
-        // التأكد من تنفيذ الكود الصحيح
         console.log('User Data:', {
             name: userName,
             email: userEmail,
@@ -45,7 +41,6 @@ async function addUser(event) {
             role: userRole
         });
 
-        // عرض نافذة تأكيد
         const result = await Swal.fire({
             title: 'Are you sure?',
             text: "Do you really want to add this user?",
@@ -73,12 +68,10 @@ async function addUser(event) {
                 throw new Error('Failed to add user');
             }
 
-            // جلب المستخدمين بعد إضافة الجديد
             const usersResponse = await fetch('http://localhost:5000/users');
             const users = await usersResponse.json();
-            renderUsers(users); // عرض المستخدمين
+            renderUsers(users);
 
-            // عرض رسالة نجاح
             await Swal.fire({
                 title: 'Added!',
                 text: 'User added successfully!',
@@ -95,7 +88,6 @@ async function addUser(event) {
 
 
     } catch (error) {
-        // التعامل مع الأخطاء
         console.error('Error adding user:', error);
         Swal.fire('Error', 'There was an error adding the user.', 'error');
     }
@@ -104,7 +96,6 @@ async function addUser(event) {
 
 }
 
-// دالة لعرض الأخطاء أسفل الحقول
 function displayError(elementId, message) {
     const errorElement = document.getElementById(elementId);
     if (errorElement) {
@@ -113,10 +104,9 @@ function displayError(elementId, message) {
     }
 }
 
-// دالة لعرض المستخدمين بعد إضافتهم
 function renderUsers(users) {
     const usersList = document.getElementById('usersList');
-    usersList.innerHTML = ''; // مسح البيانات السابقة
+    usersList.innerHTML = '';
     users.forEach(user => {
         const userElement = document.createElement('li');
         userElement.textContent = `${user.name} - ${user.email}`;
@@ -124,5 +114,4 @@ function renderUsers(users) {
     });
 }
 
-// إضافة الحدث إلى الفورم
 document.getElementById('addUserForm').addEventListener('submit', addUser);

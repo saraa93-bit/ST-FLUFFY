@@ -258,7 +258,7 @@ nav ul li a:active {
   border-radius: 18px;
   font-size: 18px;
   display: block;
-  position: relative; /* يجعل النتائج تظهر تحت البحث */
+  position: relative;
 }
 
 #results {
@@ -269,10 +269,10 @@ nav ul li a:active {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   background-color: white;
   display: none;
-  position: absolute; /* ستظهر النتائج أسفل خانة البحث */
-  top: 11%; /* ستظهر مباشرة أسفل خانة البحث */
+  position: absolute;
+  top: 11%;
   left: 25%;
-  z-index: 100; /* لضمان الظهور فوق العناصر الأخرى */
+  z-index: 100;
 }
 
 .result-item {
@@ -288,27 +288,27 @@ nav ul li a:active {
 
 #product-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* عرض 3 منتجات بجانب بعض */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 30px;
   justify-content: center;
 }
 .favorite-icon {
-  position: absolute; /* وضع الأيقونة في الزاوية العلوية اليسرى */
+  position: absolute;
   top: 10px;
   left: 10px;
   cursor: pointer;
-  color: #8c8b8b; /* لون القلب غير المفضل */
+  color: #8c8b8b;
   font-size: 1.4rem;
   transition: color 0.3s ease;
 }
 
 .favorite-icon.active {
-  color: #ed0808; /* لون القلب المفضل */
+  color: #ed0808;
 }
 
 .product-card {
-  position: relative; /* لجعل القلب يظهر داخل المنتج */
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;

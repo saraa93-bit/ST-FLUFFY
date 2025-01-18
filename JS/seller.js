@@ -4,16 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
         productForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // جلب القيم من الحقول
             const name = document.getElementById('productName').value.trim();
             const description = document.getElementById('productDescription').value.trim();
             const imageFile = document.getElementById('productImage').files[0];
             const price = document.getElementById('productPrice').value.trim();
 
-            // مسح رسائل الخطأ السابقة
             clearErrors();
 
-            // التحقق من صحة البيانات
             let isValid = true;
 
             if (!name || name.length < 3) {
@@ -36,9 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 isValid = false;
             }
 
-            if (!isValid) return; // إذا لم تكن البيانات صالحة، توقف عن الإرسال
+            if (!isValid) return;
 
-            // تحويل الصورة إلى Base64
             const reader = new FileReader();
             reader.onload = async function () {
                 const imageBase64 = reader.result;
@@ -63,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error('Failed to add product');
                     }
 
-                    // SweetAlert2: رسالة نجاح
                     Swal.fire({
                         icon: 'success',
                         title: 'Product Added!',
@@ -88,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // دالة لعرض الأخطاء أسفل كل فيلد
     function showError(id, message) {
         const errorElement = document.getElementById(id);
         if (errorElement) {
@@ -96,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // دالة لمسح الأخطاء السابقة
     function clearErrors() {
         const errors = document.querySelectorAll('.error');
         errors.forEach(error => error.textContent = '');

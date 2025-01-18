@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         products = await response.json();
         displayAllProducts(products);
-        loadCartCount(); // ✅ تم تصحيح استدعاء تحميل السلة 
+        loadCartCount();
     } catch (error) {
         console.error('Error while loading products:', error);
     }

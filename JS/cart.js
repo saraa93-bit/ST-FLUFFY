@@ -1,29 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Add event listener for the checkout button
     const checkoutButton = document.querySelector('.checkout-btn');
     if (checkoutButton) {
         checkoutButton.addEventListener('click', function () {
-            window.location.href = 'checkout.html'; // Redirect to checkout page
+            window.location.href = 'checkout.html';
         });
     }
 
-    // Load the cart when the page loads
     loadCart();
 });
 
 function loadCart() {
-    // Load the cart from localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsDiv = document.getElementById('cart-items');
     const totalPriceDiv = document.getElementById('total-price');
 
-    // Check if elements exist
     if (!cartItemsDiv || !totalPriceDiv) {
         console.error('Cart items or total price element not found in the DOM.');
         return;
     }
 
-    cartItemsDiv.innerHTML = ''; // Clear previous content
+    cartItemsDiv.innerHTML = '';
     let totalPrice = 0;
 
     if (cart.length === 0) {
@@ -49,14 +45,11 @@ function loadCart() {
 }
 
 function updateQuantity(productId, quantity) {
-    // Update the quantity in the cart inside localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const productIndex = cart.findIndex(item => item.id === productId);
 
-    // Validate quantity
     const parsedQuantity = parseInt(quantity);
     if (isNaN(parsedQuantity) || parsedQuantity < 1) {
-        // Replace alert with SweetAlert2
         Swal.fire({
             icon: 'error',
             title: 'Invalid Quantity',
@@ -70,11 +63,10 @@ function updateQuantity(productId, quantity) {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    loadCart(); // Reload the cart
+    loadCart();
 }
 
 function removeFromCart(productId) {
-    // Replace confirm with SweetAlert2
     Swal.fire({
         title: 'Are you sure?',
         text: 'Are you sure you want to remove this item from the cart?',
@@ -86,14 +78,12 @@ function removeFromCart(productId) {
         cancelButtonText: 'Cancel',
     }).then((result) => {
         if (result.isConfirmed) {
-            // Remove the product from the cart inside localStorage
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             const updatedCart = cart.filter(item => item.id !== productId);
 
             localStorage.setItem('cart', JSON.stringify(updatedCart));
-            loadCart(); // Reload the cart
+            loadCart();
 
-            // Show success message
             Swal.fire({
                 icon: 'success',
                 title: 'Removed',

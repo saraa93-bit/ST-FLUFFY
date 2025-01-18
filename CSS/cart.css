@@ -8,9 +8,9 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
   color: #333;
-  justify-content: center; /* لتوسيط المحتوى عمودياً */
-  align-items: center; /* لتوسيط المحتوى أفقياً */
-  height: auto; /* لتغطية كامل ارتفاع الصفحة */
+  justify-content: center;
+  align-items: center;
+  height: auto;
 }
 
 header {
@@ -64,19 +64,19 @@ header nav ul li a:hover {
 }
 #cart-section {
   margin: 20px auto;
-  width: 40%; /* Smaller cart section */
+  width: 40%;
   background-color: white;
-  padding: 20px; /* Reduced padding */
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  text-align: center; /* لتوسيط النصوص داخل الكارت */
+  text-align: center;
 }
 
 #cart-items {
-  margin-bottom: 20px; /* Reduced margin */
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Reduced gap */
+  gap: 15px;
 }
 
 .product-item {
@@ -84,8 +84,8 @@ header nav ul li a:hover {
   justify-content: space-between;
   align-items: center;
   background-color: #e5e5e5;
-  padding: 20px; /* Reduced padding */
-  margin-bottom: 10px; /* Reduced margin */
+  padding: 20px;
+  margin-bottom: 10px;
   border-radius: 18px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -97,43 +97,43 @@ header nav ul li a:hover {
 
 .product-item .product-details {
   flex-grow: 1;
-  margin-left: 10px; /* Reduced margin */
-  order: 1; /* Move details to the left */
+  margin-left: 10px;
+  order: 1;
 }
 
 .product-item .product-name {
   font-weight: bold;
-  font-size: 1rem; /* Smaller font size */
+  font-size: 1rem;
 }
 
  .cart-pro-price {
-  font-size: 1.1rem; /* Smaller font size */
+  font-size: 1.1rem;
   color: #09940e;
   margin-top: 15px;
   margin: 10px;
 }
 
  .car-remove {
-  background-color: #ff0000; /* Red color for remove button */
+  background-color: #ff0000;
   color: white;
-  padding: 10px 8px; /* Reduced padding */
-  font-size: 0.7rem; /* Smaller font size */
+  padding: 10px 8px;
+  font-size: 0.7rem;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  order: 3; /* Move remove button to the far right */
+  order: 3;
 }
 
 .product-item .car-remove:hover {
-  background-color: #cc0000; /* Darker red on hover */
+  background-color: #cc0000;
 }
 
 #total-price {
-  font-size: 1.1rem; /* Smaller font size */
+  font-size: 1.1rem;
   font-weight: bold;
   color: #8f0606;
-  margin-top: 15px; /* Reduced margin */
+  margin-top: 15px;
 }
 
 .checkout-btn {
@@ -141,10 +141,10 @@ header nav ul li a:hover {
   width: 20%;
   margin: 30px auto;
   margin-bottom: 40px;
-  padding: 8px; /* Reduced padding */
+  padding: 8px;
   background-color: #109810;
   color: white;
-  font-size: 1rem; /* Smaller font size */
+  font-size: 1rem;
   text-align: center;
   border: none;
   border-radius: 15px;
@@ -176,8 +176,8 @@ header nav ul li a:hover {
   }
 
   #cart-section {
-      width: 40%; /* Adjusted width for mobile */
-      padding: 10px; /* Reduced padding */
+      width: 40%;
+      padding: 10px;
   }
 
   .product-item {
@@ -186,8 +186,8 @@ header nav ul li a:hover {
   }
 
   .pro-img {
-      width: 25px; /* Smaller image for mobile */
-      height: 25px; /* Smaller image for mobile */
+      width: 25px;
+      height: 25px;
   }
 }
 .cart-image-fit{

@@ -3,10 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log("Logged in user email from localStorage:", loggedInUserEmail);
 
-    if (!loggedInUserEmail) {
-        window.location.href = 'login.html';
-        return;
-    }
+    
 
     fetch('http://localhost:5000/users')
         .then(response => response.json())

@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById('loginForm');
+    
     if (loginForm) {
         loginForm.addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -8,6 +9,26 @@ document.addEventListener("DOMContentLoaded", function () {
             const password = document.querySelector('input[name="password"]').value;
             const errorElement = document.getElementById('Error');
             const successMessage = document.getElementById('successMessage');
+
+            errorElement.textContent = '';
+            successMessage.textContent = '';
+            successMessage.style.display = 'none';
+
+            if (!email || !password) {
+                errorElement.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errorElement.textContent = 'Please enter a valid email address.';
+                return;
+            }
+
+            if (password.length < 6) {
+                errorElement.textContent = 'Password must be at least 6 characters long.';
+                return;
+            }
 
             try {
                 const response = await fetch('../DB/db.json');
@@ -21,9 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 if (user.password === password) {
+                    console.log('Login successful as ', user.role);
                     localStorage.setItem('loggedInUser', JSON.stringify(user));
 
                     successMessage.textContent = `Successfully logged in as ${user.role}`;
+                    successMessage.style.display = 'block';
+                    console.log('Success message should be visible now');
+
                     setTimeout(() => {
                         if (user.role === 'admin') {
                             window.location.href = '../HTML/admin.html';
@@ -36,11 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
                             hideLoginButton();
                             showAddProductButton(user);
                         }
-                    }, 1500);
+                    }, 3000);
                 } else {
                     errorElement.textContent = 'Incorrect password';
                 }
-
             } catch (error) {
                 console.error('Error while loading', error);
                 errorElement.textContent = 'Error while logging in';
@@ -79,8 +103,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showAddProductButton(user) {
         if (user.role === 'seller') {
+            console.log('User role:', user.role);
+
             const header = document.querySelector('header');
             if (header) {
+                const existingButton = header.querySelector('.add-product-btn');
+                if (existingButton) {
+                    return;
+                }
+
                 const addProductButton = document.createElement('button');
                 addProductButton.textContent = 'Add New Product';
                 addProductButton.classList.add('btn', 'add-product-btn');
@@ -90,6 +121,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 header.appendChild(addProductButton);
+            } else {
+                console.error('Header element not found');
             }
         }
     }

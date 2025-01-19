@@ -137,3 +137,28 @@
     text-decoration: underline;
     color: #07b5cc;
 }
+.success-message {
+    color: green;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 100%; 
+    z-index: 10; 
+}
+.add-product-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.add-product-btn:hover {
+    background-color: #45a049;
+}

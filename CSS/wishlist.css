@@ -70,3 +70,12 @@ h1 {
 .remove-btn:hover {
     background-color: #cc0000;
 }
+.favorite-icon i {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.favorite-icon i.active {
+    color: red;
+}

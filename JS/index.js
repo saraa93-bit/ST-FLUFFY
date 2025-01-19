@@ -1,20 +1,50 @@
+function hideLoginButton(userRole) {
+    const loginButton = document.getElementById('loginButton');
+    if (loginButton) {
+        if ( userRole === 'seller') {
+           
+            loginButton.style.display = 'none';
+        }
+    } else {
+        console.error("Login button not found!");
+    }
+}
+function showLogoutButton() {
+    const logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+        logoutButton.style.display = 'block';
+        logoutButton.addEventListener('click', function () {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = '../HTML/login.html';
+        });
+    } else {
+        console.error("Logout button not found!");
+    }
+}
 window.addEventListener('DOMContentLoaded', () => {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-   if (loggedInUser) {
-        hideLoginButton();
+    if (loggedInUser) {
+        hideLoginButton(loggedInUser.role); 
+        showLogoutButton(); 
 
         if (loggedInUser.role === 'seller') {
-            showAddProductButton();
+            showAddProductButton(); 
         }
-
-        
+    } else {
+        hideLoginButton('customer');
     }
+
     fetch('http://localhost:5000/products')
         .then(response => response.json())
         .then(products => {
             const searchBar = document.getElementById('searchBar');
             const resultsDiv = document.getElementById('results');
+
+            if (!searchBar || !resultsDiv) {
+                console.error('Search bar or results div not found!');
+                return;
+            }
 
             searchBar.addEventListener('input', () => {
                 const searchQuery = searchBar.value.toLowerCase().trim();
@@ -60,19 +90,9 @@ window.addEventListener('DOMContentLoaded', () => {
             function goToProductPage(productId) {
                 window.location.href = `../HTML/product.html?productId=${productId}`;
             }
-
         })
         .catch(error => console.error('Error loading JSON data:', error));
 });
-
-function hideLoginButton() {
-    const loginButton = document.getElementById('loginButton');
-    if (loginButton) {
-        loginButton.style.display = 'none';
-    } else {
-        console.error("Login button not found!");
-    }
-}
 
 function showAddProductButton() {
     const header = document.querySelector('.header');

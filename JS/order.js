@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost:5000/orders.json')
-        .then(response => response.json())
+    fetch('http://localhost:5000/orders')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load orders');
+            }
+            return response.json();
+        })
         .then(orders => {
+            console.log('Orders:', orders);
             const ordersBody = document.getElementById('orders-body');
 
             if (orders.length === 0) {
